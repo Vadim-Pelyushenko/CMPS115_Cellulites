@@ -26,7 +26,7 @@ public class Cell
 	{
 		if (Simulator.shadeMode)
 		{
-			int intensity = (int) (255.0 / Simulator.maxGradient) * gradient;
+			int intensity = (int) ((255.0 / Simulator.maxGradient) * gradient);
 
 			if (state == 0)
 				return new Color(intensity, 0, 0);
