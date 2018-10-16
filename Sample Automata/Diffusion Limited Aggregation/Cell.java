@@ -49,7 +49,7 @@ Cell
 		else
 		{
 			Neighbor adj = randomChoice(adjacent);
-			if(rand.state == 0)
+			if(adj.state == 0)
 			{
 				^this.state = 0;
 				^rand.state = 1;
