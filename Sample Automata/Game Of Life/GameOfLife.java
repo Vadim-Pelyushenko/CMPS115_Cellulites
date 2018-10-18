@@ -55,9 +55,7 @@ Cell
 			{
 				*state = 1;
 			}
-			state = 2;
 			*state = 2;
-			^state = 2;
 		}
 		else
 		{
