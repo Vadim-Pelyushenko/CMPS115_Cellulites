@@ -9,6 +9,11 @@ public class Cell
 		this.alive = alive;
 	}
 	
+	public void setState(boolean state) 
+	{
+		alive = state;
+	}
+	
 	public Color getColor() 
 	{
 		if(alive)

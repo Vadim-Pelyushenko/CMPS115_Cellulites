@@ -53,6 +53,29 @@ public class Board
 			grid[7][4].alive = true;
 			grid[6][3].alive = true;
 		}
+		else if(initMode == 3) 
+		{
+			for(int i = 0; i < width; i++) 
+			{
+				for(int j = 0; j < height; j++) 
+				{
+					grid[i][j] = new Cell(false);					
+					tempBoard[i][j] = new Cell(false);
+				}
+			}
+			
+			for(int i = 0; i < width; i++) 
+			{
+				grid[i][150].alive = true;
+				tempBoard[i][150].alive = true;
+			}
+			
+			for(int i = 0; i < height; i++) 
+			{
+				grid[150][i].alive = true;
+				tempBoard[150][i].alive = true;
+			}
+		}
 	}
 	
 	public void nextGeneration() 
@@ -61,7 +84,7 @@ public class Board
 		{
 			for(int j = 0; j < height; j++) 
 			{
-				tempBoard[i][j].alive = nextState(i,j);
+				tempBoard[i][j].setState(nextState(i,j));
 			}
 		}
 		
@@ -75,7 +98,7 @@ public class Board
 	// Looks at nearby neighbors to determine what should
 	// be the state of a particular cell in the next
 	// generation
-	public boolean nextState(int x, int y) 
+	private boolean nextState(int x, int y) 
 	{
 		int liveAdj = 0;
 		
@@ -99,7 +122,7 @@ public class Board
 	// Return 0 if out of bounds, or if not alive
 	// return 1 otherwise.
 	// used for the purposes of counting live neighbors
-	public int checkAlive(int x, int y) 
+	private int checkAlive(int x, int y) 
 	{
 		if(x < 0 || x >= width || y < 0 || y >= height)
 			return 0;

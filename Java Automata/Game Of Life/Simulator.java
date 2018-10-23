@@ -14,14 +14,14 @@ public class Simulator extends JFrame
 	int height;
 	int pixelSize;
 	
-	public Simulator(int width, int height, int pixelSize) 
+	public Simulator(int width, int height, int pixelSize, int initMode) 
 	{
 		this.width = width;
 		this.height = height;
 		this.pixelSize = pixelSize;
 		
 		board = new Board(width,height);
-		board.initialize(1);
+		board.initialize(initMode);
 		
 		proj = new Projector(board,width,height,pixelSize);
 		this.add(proj);
@@ -64,8 +64,9 @@ public class Simulator extends JFrame
 		int width = 300;
 		int height = 300;
 		int pixel = 3;
+		int initMode = 3;
 		
-		Simulator sim = new Simulator(width,height,pixel);
+		Simulator sim = new Simulator(width,height,pixel,initMode);
 		sim.start();
 	}
 }
