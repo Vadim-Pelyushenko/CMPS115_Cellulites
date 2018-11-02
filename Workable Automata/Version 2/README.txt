@@ -13,3 +13,6 @@ Does it run correctly everywhere?
   -Microsoft Edge
 -But it doesn't work on
   -Internet Explorer(tbh though I don't really think that we care too much about it)
+
+*It also worked on roommate J's computer for the same browsers
+*Also worked on Firefox for Izzy(he didn't have the other browsers on his comp)
