@@ -6,4 +6,4 @@ Namely that
 -The futureState is made as a copy of the current state
 
 The main reason for the first thing is indicated in a picture place in this folder. (In short, a bias occurs)
-The reason for the second thing is that this CA doesn't work without it.
+The reason for the second thing is that this CA doesn't work without it. (Need to investigate why, I think it should work without it)
