@@ -86,7 +86,7 @@ function rule30UpdateCell()
 	// The relationships of cells. Based on Rule 30.
 	// Cannot change current State of cell, otherwise it's going to break everything!
 	// hence the reason to change future 
-	if(upleft == 0 && upcenter == 0 && upright == 0)
+	/*if(upleft == 0 && upcenter == 0 && upright == 0)
 		this.setFutureState(0,1);
 	if(upleft == 0 && upcenter == 0 && upright == 1)
 		this.setFutureState(0,1);
@@ -96,6 +96,23 @@ function rule30UpdateCell()
 		this.setFutureState(0,0);
 	if(upleft == 1 && upcenter == 0 && upright == 0)
 		this.setFutureState(0,0);
+	if(upleft == 1 && upcenter == 0 && upright == 1)
+		this.setFutureState(0,0);
+	if(upleft == 1 && upcenter == 1 && upright == 0)
+		this.setFutureState(0,0);
+	if(upleft == 1 && upcenter == 1 && upright == 1)
+		this.setFutureState(0,1);*/
+
+	if(upleft == 0 && upcenter == 0 && upright == 0)
+		this.setFutureState(0,0);
+	if(upleft == 0 && upcenter == 0 && upright == 1)
+		this.setFutureState(0,1);
+	if(upleft == 0 && upcenter == 1 && upright == 0)
+		this.setFutureState(0,1);
+	if(upleft == 0 && upcenter == 1 && upright == 1)
+		this.setFutureState(0,0);
+	if(upleft == 1 && upcenter == 0 && upright == 0)
+		this.setFutureState(0,1);
 	if(upleft == 1 && upcenter == 0 && upright == 1)
 		this.setFutureState(0,0);
 	if(upleft == 1 && upcenter == 1 && upright == 0)
