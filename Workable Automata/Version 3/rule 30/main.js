@@ -7,9 +7,9 @@ function startSite()
 	console.log("The script has begun");
 
 	// Settings for the CA
-	let rows = 30;
-	let cols = 30;
-	let cellWidth = 30;
+	let rows = 20;
+	let cols = 20;
+	let cellWidth = 20;
 	let delay = 17;
 
 	// Create the board, set the initialization and update function of the CA
@@ -43,8 +43,13 @@ function rule30InitBoard()
 	}
 
 	let centerC = Math.floor(this.cols/2);
-	result[centerC][0].setCurrentState(0,0);
-	result[centerC][0].setFutureState(0,0);
+	// result[centerC][0].setCurrentState(0,0);
+	// result[centerC][0].setFutureState(0,0);
+
+	// THIS CHANGE HAS BEEN MADE BECAUSE THE FIRST INDEX IS ROW, AND THE
+	// SECOND INDEX IS COLUMN
+	result[0][centerC].setCurrentState(0,0);
+	result[0][centerC].setFutureState(0,0);
 
 	this.grid = result;
 	//console.log("CHECK 1" + this.grid);
@@ -52,7 +57,9 @@ function rule30InitBoard()
 
 function rule30UpdateCell()
 {
-	if(this.posR == 0 || this.posC == 0 || this.posC >= this.board.cols)
+	// NOTE, THESE CONDITIONS HAVE BEEN CHANGED
+	// THE THIRD CONDITION HAS BEEN CORRECTED, THE 4TH CONDITION HAS BEEN ADDED
+	if(this.posR == 0 || this.posC == 0 || this.posC + 1 >= this.board.cols || this.posR + 1 >= this.board.rows)
 	{
 		this.setFutureState(0,this.state[0]);
 		return;
@@ -61,9 +68,14 @@ function rule30UpdateCell()
 	let grid = this.board.grid;
 	let up = this.posR - 1;
 
-	let upleft = grid[up][this.posC-1];
-	let upcenter = grid[up][this.posC];
-	let upright = grid[up][this.posC+1];
+	let upleft = grid[up][this.posC-1].state[0];
+	let upcenter = grid[up][this.posC].state[0];
+	let upright = grid[up][this.posC+1].state[0];
+
+	// debugging
+	// console.log("position: " + this.posR + "," + this.posC);
+	// console.log(upleft + " " + upcenter + " " + upright);
+
 
 	// The relationships of cells. Based on Rule 30.
 	// Cannot change current State of cell, otherwise it's going to break everything!
@@ -93,20 +105,21 @@ function rule30DrawBoard()
 	let cellWidth = this.cellWidth;
 	let grid = this.board.grid;
 
-	ctx.fillStyle = "#FF0000";
+	// Change back to white
+	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, this.canv.width, this.canv.height);
 
 	ctx.fillStyle = "#000000";
 	for(let r = 0; r < this.board.rows; r++)
 	{
-		for(let c = 0; c < this.board.cols; c++)
+		for(let c = 0; c < this.board.cols; c++) // FOR LOOP CONDITION FIXED TO BE .COLS
 		{
 			//console.log(grid);
 			let tempCell = grid[r][c];
-			let isWhite = tempCell.state[0];
+			let isBlack = tempCell.state[0];
 
-			if(isWhite == 0)
-				ctx.fillRect(r*cellWidth, c*cellWidth, cellWidth, cellWidth);
+			if(isBlack == 0)
+				ctx.fillRect(c*cellWidth, r*cellWidth, cellWidth, cellWidth);
 		}
 	}
 }
