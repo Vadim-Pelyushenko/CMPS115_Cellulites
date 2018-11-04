@@ -11,10 +11,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
 
-    <script src="main.js"></script>
-    <script src="board.js"></script>
-    <script src="drawer.js"></script>
-    <script src="cell.js"></script>
+    <script src="src/Game of Life/main.js"></script>
+    <script src="src/Game of Life/board.js"></script>
+    <script src="src/Game of Life/drawer.js"></script>
+    <script src="src/Game of Life/cell.js"></script>
+
+    <script src="src/Rule 30/main.js"></script>
+    <script src="src/Rule 30/board.js"></script>
+    <script src="src/Rule 30/drawer.js"></script>
+    <script src="src/Rule 30/cell.js"></script>
+
+
+
 
     <script>
         function myFunction1() {
@@ -58,7 +66,7 @@
     </script>
     <script>
         function myFunction5() {
-            document.getElementById("TextBox").innerHTML = "CA5;
+            document.getElementById("TextBox").innerHTML = "CA5";
         }
     </script>
 </head>
@@ -124,9 +132,8 @@
 
                         <tr> 
                             <td>
-                                <button type="button" onclick="startSite()">Run</button>
-                                <button type="button" onclick="startSite()">Stop</button>
-                                <button type="button" onclick="startSite()">Choose</button>
+                                <button type="button" onclick="startSite()">Run Game of Life</button>
+                                <button type="button" onclick="startSite1()">Run Rule 30</button>
                             </td>
                             <td>
                                 <!-- temporary in place of presets-->
