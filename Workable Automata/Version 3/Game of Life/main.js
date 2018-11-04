@@ -1,3 +1,7 @@
+/*
+ * Cellular Automata - Game of Life
+ */
+
 function startSite()
 {
 	console.log("The script has begun");

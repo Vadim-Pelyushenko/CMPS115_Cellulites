@@ -50,7 +50,7 @@ class Cell
 		if(ind < 0 || ind >= this.futureState.length)
 		{
 			let msg = "(setFutureState)";
-			msg += " INDEX SUPPLIED IS OUT OF BOUNDS! Length: " + this.data.length + ", Index: " + ind;
+			msg += " INDEX SUPPLIED IS OUT OF BOUNDS! Length: " + this.state.length + ", Index: " + ind;
 			console.log(msg);
 		}
 		else

@@ -1,10 +1,6 @@
-The 3rd version of a workable automata.
-Same as the last one, it will simulate Game of Life with no visual difference.
+The Rule 30 Cellular Automata, branched off from Game of Life C.A.
 
-The main difference between this version and the previous is that some functions have
-been made interchangeable, which correspondingly allows this code to exchange one CA
-for another provided that you write some particular functions.
-
+------ Below this line prpvides the same information as Game Of Life README ------
 The interchangeable functions are
 -initBoard()
 -updateState()
