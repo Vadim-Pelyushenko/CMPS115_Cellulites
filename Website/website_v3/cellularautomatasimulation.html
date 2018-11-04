@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+
+    <script src="src/Game of Life/main.js"></script>
+    <script src="src/Game of Life/board.js"></script>
+    <script src="src/Game of Life/drawer.js"></script>
+    <script src="src/Game of Life/cell.js"></script>
+
+    <script src="src/Rule 30/main.js"></script>
+    <script src="src/Rule 30/board.js"></script>
+    <script src="src/Rule 30/drawer.js"></script>
+    <script src="src/Rule 30/cell.js"></script>
+
+
+
+
+    <script>
+        function myFunction1() {
+            document.getElementById("TextBox").innerHTML =
+                "<figure><pre><code contenteditable='true'>\n" +
+                "function gameOfLifeInitBoard()\n" +
+                "{\n" +
+                "\tlet result = create2DArray(this.rows,this.cols);\n" +
+                "\n" +
+                "\tfor(let r = 0; r < this.rows; r++)\n" +
+                "\t{\n" +
+                "\t\tfor(let c = 0; c < this.cols; c++)\n" +
+                "\t\t{\n" +
+                "\t\t\tlet val = Math.floor(Math.random()*2);\n" +
+                "\n" +
+                "\t\t\tlet temp = new Cell(this,1,r,c);\n" +
+                "\t\t\ttemp.setCurrentState(0,val);\n" +
+                "\t\t\ttemp.setFutureState(0,0);\n" +
+                "\t\t\tresult[r][c] = temp;\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "\n" +
+                "\tthis.grid = result;\n" +
+                "}</code></pre></figure>"
+        }
+    </script>
+    <script>
+        function myFunction2() {
+            document.getElementById("TextBox").innerHTML = "CA2";
+        }
+    </script>
+    <script>
+        function myFunction3() {
+            document.getElementById("TextBox").innerHTML = "CA3";
+        }
+    </script>
+    <script>
+        function myFunction4() {
+            document.getElementById("TextBox").innerHTML = "CA4";
+        }
+    </script>
+    <script>
+        function myFunction5() {
+            document.getElementById("TextBox").innerHTML = "CA5";
+        }
+    </script>
+</head>
+
+
+
+<body id="top">
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Cellular Automata Simulator</a>
+
+        <!-- part that makes it responsive  -->
+        <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button> 
+
+
+        <!-- menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
+
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+
+            </ul>
+        </div>
+    </div>
+    </nav> 
+
+
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+
+             <div class="table-responsive">
+                <table class="table">
+                    <thead> 
+                    </thead>
+                    <tbody>
+                        <!-- buffer row -->
+                         <tr> 
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+
+                        <tr> 
+                            <td>
+                                <!-- temporary in place of output-->
+                                <div class="container-fluid  d-flex ">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Mqvx8iTinS4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> Video not supported </iframe>
+                                </div> 
+                                <!-- <div id = "output">  </div> -->
+                            </td>
+
+                            <td id="TextBox" style = "height: 120px; width:120px" align="left"; color="white">
+                                <!-- temporary in place of IDE-->
+                                 <div class="container d-flex" style="height: 315px;width: 560px;background-color: rgba(255,255,255,0.26);">
+
+                                     EMPTY;
+
+                                <!-- <div id = "ide"> </div>  --> 
+                            </td>
+                        </tr>
+
+                        <tr> 
+                            <td>
+                                <button type="button" onclick="startSite()">Run Game of Life</button>
+                                <button type="button" onclick="startSite1()">Run Rule 30</button>
+                            </td>
+                            <td>
+                                <!-- temporary in place of presets-->
+                                 <div class="container d-flex" style="height: 315px;width: 560px;background-color: rgba(255,255,255,0.26);">
+                                <!-- <div id = "presets"> </div>  -->
+
+                                     <!--https://stackoverflow.com/questions/21998679/css-how-to-make-scrollable-list-->
+                                     <!--<h2> Search Projects </h2>-->
+
+                                         <!--<ul style="width:100%;height:100%;overflow:scroll;text-align:left;font-size: 150%;">-->
+                                             <!--<li>Project 1</li>-->
+                                             <!--<li>Project 2</li>-->
+                                             <!--<li>Project 3</li>-->
+                                             <!--<li>Project 4</li>-->
+                                             <!--<li>Project 5</li>-->
+                                             <!--<li>Project 6</li>-->
+                                             <!--<li>Project 7</li>-->
+                                             <!--<li>Project 8</li>-->
+                                             <!--<li>Project 9</li>-->
+                                             <!--<li>Project 10</li>-->
+                                         <!--</ul>-->
+                                     <SELECT id="sel" NAME="CAList" SIZE="4" MULTIPLE >
+                                         <OPTION onclick="myFunction1()"> CA1
+                                         <OPTION onclick="myFunction2()"> CA2
+                                         <OPTION onclick="myFunction3()"> CA3
+                                         <OPTION onclick="myFunction4()"> CA4
+                                         <OPTION onclick="myFunction5()"> CA5
+                                     </SELECT>
+
+                            </td>
+                        </tr>
+
+                         <!-- buffer row -->
+                         <tr> 
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+             </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Cellular Automata Simulator 2018</p>
+        </div>
+    </footer>
+    
+<!--     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="assets/js/grayscale.js"></script>
+ -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
