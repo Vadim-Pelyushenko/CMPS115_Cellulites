@@ -1,5 +1,6 @@
 /*
  * Cellular Automata - Rule 30
+ * 0 for black, 1 for white
  */
 
 function startSite()
@@ -29,7 +30,7 @@ function startSite()
 
 function rule30InitBoard()
 {
-	let result = create2DArray(this.rows,this.cols);
+	let result = create2DArray(this.rows, this.cols);
 
 	for(let r = 0; r < this.rows; r++)
 	{
@@ -60,10 +61,15 @@ function rule30UpdateCell()
 
 	let grid = this.board.grid;
 	let up = this.posR - 1;
-
+	
 	let upleft = grid[up][this.posC-1];
 	let upcenter = grid[up][this.posC];
 	let upright = grid[up][this.posC+1];
+
+	// console.log("Up Left: " + upleft);
+	// // console.log("Up Left: " + upcenter);
+	// // console.log("Up Left: " + upright);
+
 
 	// The relationships of cells. Based on Rule 30.
 	// Cannot change current State of cell, otherwise it's going to break everything!
