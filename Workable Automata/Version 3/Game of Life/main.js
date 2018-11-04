@@ -10,7 +10,7 @@ function startSite()
 	let rows = 100;
 	let cols = 100;
 	let cellWidth = 7;
-	let delay = 17;
+	let delay = 100;
 
 	// EUREKA!!! IT WORKS
 	// board.initializeBoard();
