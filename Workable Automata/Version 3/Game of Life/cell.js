@@ -38,7 +38,7 @@ class Cell
 		if(ind < 0 || ind >= this.state.length)
 		{
 			let msg = "(setCurrentState)";
-			msg += " INDEX SUPPLIED IS OUT OF BOUNDS! Length: " + this.data.length + ", Index: " + ind;
+			msg += " INDEX SUPPLIED IS OUT OF BOUNDS! Length: " + this.state.length + ", Index: " + ind;
 			console.log(msg);
 		}
 		else

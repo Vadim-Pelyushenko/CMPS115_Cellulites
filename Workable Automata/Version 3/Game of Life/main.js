@@ -17,6 +17,7 @@ function startSite()
 	board.setInitBoard(gameOfLifeInitBoard);
 	board.initializeBoard();
 	board.setCellUpdate(gameOfLifeUpdateCell);
+	console.log("CHECK 2 " + board.grid);
 
 	// Create the drawer, set the drawing function of the CA
 	let drawer = new Drawer(board,cellWidth);
