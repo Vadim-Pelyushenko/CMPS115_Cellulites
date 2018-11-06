@@ -7,15 +7,23 @@ var delay = null;
 var board = null;
 var drawer = null;
 
+var initBoardFunc = null;
+var updateCellFunc = null;
+var drawBoardFunc = null;
+
 function runSimulation()
 {
+	board.setInitBoard(initBoardFunc);
 	board.initializeBoard();
+	board.setCellUpdate(updateCellFunc);
 
-	if(!drawer.isRunning)
-	{
-		drawer.startDrawing(delay);
-		drawer.frame = 0;
-	}
+	drawer.setDrawBoard(drawBoardFunc);
+
+	if(drawer.isRunning)
+		drawer.stopDrawing();
+
+	drawer.startDrawing(delay);
+	drawer.frame = 0;
 }
 
 function stopSimulation()

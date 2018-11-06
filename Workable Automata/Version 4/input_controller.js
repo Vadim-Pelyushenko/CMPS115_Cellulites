@@ -31,6 +31,8 @@ function setParameters()
 
 	if(readRows != NaN && readCols != NaN && readWidth != NaN)
 	{
+		if(drawer != null && drawer.isRunning)
+			drawer.stopDrawing();
 		createBoard();
 		createDrawer();
 	}
@@ -74,9 +76,9 @@ function setBoardInitFunction(initFunc)
 	}
 	else
 	{
-		board.setInitBoard(initFunc);
-		console.log("The Board Init Function has been set");
+		initBoardFunc = initFunc;
 
+		console.log("The Board Init Function has been set");
 		let initFuncDisplay = document.getElementById("initFuncDisplay");
 		initFuncDisplay.innerHTML = "InitBoard Function: SET";
 	}
@@ -92,9 +94,9 @@ function setCellUpdateFunction(updateFunc)
 	}
 	else
 	{
-		board.setCellUpdate(updateFunc);
-		console.log("The Cell Update Function has been set");
+		updateCellFunc = updateFunc;
 
+		console.log("The Cell Update Function has been set");
 		let updateFuncDisplay = document.getElementById("updateFuncDisplay");
 		updateFuncDisplay.innerHTML = "UpdateCell Function: SET";
 	}
@@ -128,9 +130,9 @@ function setDrawBoardFunction(drawFunc)
 	}
 	else
 	{
-		drawer.setDrawBoard(drawFunc);
-		console.log("The Draw Board Function has been set");
+		drawBoardFunc = drawFunc;
 
+		console.log("The Draw Board Function has been set");
 		let updateFuncDisplay = document.getElementById("drawFuncDisplay");
 		drawFuncDisplay.innerHTML = "DrawBoard Function: SET";
 	}
