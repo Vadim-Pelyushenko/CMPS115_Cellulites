@@ -30,13 +30,13 @@
 		<hr>
 
 		<p>
-			Set #Rows: <input type="text" id="quantityRowInput" value="40">
+			Set #Rows: <input type="text" id="quantityRowInput" value="100">
 		</p>
 		<p>
-			Set #Cols: <input type="text" id="quantityColInput" value="40">
+			Set #Cols: <input type="text" id="quantityColInput" value="100">
 		</p>
 		<p>
-			Set CellWidth: <input type="text" id="cellWidthInput" value="10">
+			Set CellWidth: <input type="text" id="cellWidthInput" value="5">
 		</p>
 		<button type="button" onclick="setParameters()">Set Parameters</button>
 		<br>
@@ -48,12 +48,13 @@
 		<br>
 		<br>
 		<p>Set InitBoard Function:</p>
-		<button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Game of Life
-		</button>
+		<button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Game of Life</button>
 		<br>
 		<br>
 		<p>Set UpdateCell Function:</p>
 		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell)">Game of Life</button>
+		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell2)">Fruitful Game of Life</button>
+		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell3)">Inverted Game of Life</button>
 		<br>
 		<br>
 		<p>Set DrawBoard Function:</p>
