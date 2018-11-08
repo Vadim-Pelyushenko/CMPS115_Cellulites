@@ -9,6 +9,7 @@ class Board
 	// The number of columns that there are
 	//
 	// grid
+	
 	// The entire grid of cells
 	//
 	// initBoard
