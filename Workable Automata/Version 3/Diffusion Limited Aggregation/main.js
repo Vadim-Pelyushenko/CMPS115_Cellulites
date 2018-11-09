@@ -3,10 +3,10 @@ function startSite()
 	console.log("The script has begun");
 
 	// Settings for the CA
-	let rows = 100;
-	let cols = 100;
-	let cellWidth = 7;
-	let delay = 5;
+	let rows = 200;
+	let cols = 200;
+	let cellWidth = 5;
+	let delay = 1;
 
 	// Create the board, set the initialization and update function of the CA
 	let board = new Board(rows,cols);

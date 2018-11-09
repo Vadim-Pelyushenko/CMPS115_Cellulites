@@ -38,7 +38,7 @@ function rule30InitBoard()
 		{
 			let temp = new Cell(this,1,r,c);
 			temp.setCurrentState(0, 1);
-			temp.setFutureState(0,1);
+			temp.setFutureState(0, 1);
 			result[r][c] = temp;
 		}
 	}
