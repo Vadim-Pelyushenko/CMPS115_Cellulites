@@ -1,7 +1,6 @@
 // RULE 30 CELLULAR AUTOMATA
 //--------------------------------------------------------------
 // 0 for black, 1 for white.
-//
 
 //
 // Initial Board for Rule 30
