@@ -2,6 +2,7 @@
 //--------------------------------------------------------------
 // 0 for black, 1 for white.
 
+
 //
 // Initial Board for Rule 30
 function rule30InitBoard() {
@@ -37,55 +38,42 @@ function rule30UpdateCell(posR, posC) {
         return;
     }
 
-    let grid = this.grid;
+    let grid = this.board.grid;
     let up = this.posR-1;
     
     let upleft = grid[up][this.posC-1].state[0];
     let upcenter = grid[up][this.posC].state[0];
-    let upright = grid[up][this.posC+1].state[0];
-    
+	let upright = grid[up][this.posC+1].state[0];
+
     if(upleft == 0 && upcenter == 0 && upright == 0)
-		this.setFutureState(0,1);
+		this.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 0 && upright == 1)
-		this.setFutureState(0,1);
+		this.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 1 && upright == 0)
-		this.setFutureState(0,1);
+		this.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 1 && upright == 1)
-		this.setFutureState(0,0);
+		this.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 0 && upright == 0)
-		this.setFutureState(0,0);
+		this.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 0 && upright == 1)
-		this.setFutureState(0,0);
+		this.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 1 && upright == 0)
-		this.setFutureState(0,0);
+		this.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 1 && upright == 1)
-		this.setFutureState(0,1);
+		this.setFutureState(0, 1);
 }
 
-
-
-/*
-function gameOfLifeDrawBoard()
-{
-	// Draw all of the lives cells as white
-			let tempCell = grid[r][c];
-			let isAlive = tempCell.state[0];
-
-			if(isAlive == 1)
-				ctx.fillRect(r*cellWidth,c*cellWidth,cellWidth,cellWidth);
-		}
-	}
-}
-*/
+//
+// Draw Board function to produce the cell boards
 function rule30DrawBoard() {
 	let ctx = this.context;
 	let cellWidth = this.cellWidth;
 	let grid = this.board.grid;
 
-	ctx.fillStyle = "#FFFFFFF";
+	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, this.canv.width, this.canv.height);
 
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#FFFFFFF";
     // ************************************8  this.board.rows and this.board.cols ************/
 	for (let r = 0; r < this.rows; r++) {
 		for (let c = 0; c < this.cols; c++) {
