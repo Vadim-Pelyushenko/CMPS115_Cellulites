@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="site_controller.js"></script>
 
 		<script type="text/javascript" src="game_of_life.js"></script>
+		<script type="text/javascript" src="rule30.js"></script>
 	</head>
 
 	<body>
@@ -40,27 +41,35 @@
 		</p>
 		<button type="button" onclick="setParameters()">Set Parameters</button>
 		<br>
+
 		<br>
 		<p>
 			Set Delay: <input type="text" id="delayInput" value="100">
 		</p>
 		<button id="setDelay" onclick="setDelay()">Set Delay</button>
 		<br>
+
 		<br>
 		<p>Set InitBoard Function:</p>
 		<button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Game of Life</button>
+		<button type="button" onclick="setBoardInitFunction(rule30InitBoard)">Rule 30</button>
 		<br>
+
 		<br>
 		<p>Set UpdateCell Function:</p>
 		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell)">Game of Life</button>
 		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell2)">Fruitful Game of Life</button>
 		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell3)">Inverted Game of Life</button>
+		<button type="button" onclick="setCellUpdateFunction(rule30UpdateCell)">Rule 30</button>
 		<br>
+
 		<br>
 		<p>Set DrawBoard Function:</p>
 		<button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard)">Game of Life</button>
 		<button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard2)">Game of Life 2</button>
+		<button type="button" onclick="setDrawBoardFunction(rule30DrawBoard)">Rule 30</button>
 		<br>
+
 		<br>
 	</body>
 </html>
