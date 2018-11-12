@@ -5,11 +5,14 @@
 
 //
 // Initial Board for Rule 30
-function rule30InitBoard() {
+function rule30InitBoard()
+{
     let result = create2DArray(this.rows, this.cols);
 
-	for (let r = 0; r < this.rows; r++) {
-		for (let c = 0; c < this.cols; c++) {
+	for (let r = 0; r < this.rows; r++)
+	{
+		for (let c = 0; c < this.cols; c++)
+		{
 			let temp = new Cell(this, 1, r, c);
 			temp.setCurrentState(0, 0);
 			temp.setFutureState(0, 0);
@@ -29,13 +32,15 @@ function rule30InitBoard() {
 //
 // Update Cell for Rule 30.
 // Base on Rule 30 rules, this function will set the current cell state and future cell state.
-function rule30UpdateCell(posR, posC) {	
+function rule30UpdateCell(posR, posC)
+{	
 	let grid = this.grid;
 	let cell = grid[posR][posC];
     let up = posR-1;
 	
 	// Return nothing when reach the boarders and edges
-	if (posR == 0 || posC == 0 || posC+1 >= cols || posR+1 >= rows) {
+	if (posR == 0 || posC == 0 || posC+1 >= cols || posR+1 >= rows)
+	{
         cell.setFutureState(0, cell.state[1]);
         return;
     }
@@ -67,7 +72,8 @@ function rule30UpdateCell(posR, posC) {
 
 //
 // Draw Board function to produce the cell boards
-function rule30DrawBoard() {
+function rule30DrawBoard()
+{
 	let ctx = this.context;
 	let cellWidth = this.cellWidth;
 	let grid = this.board.grid;
