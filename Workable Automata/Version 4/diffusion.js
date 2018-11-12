@@ -176,12 +176,12 @@ function diffusionDrawBoard()
 			if(state == 1) // red cells
 			{
 				ctx.fillStyle = "#FF0000";
-				ctx.fillRect(c*cellWidth,r*cellWidth,cellWidth,cellWidth);
+				ctx.fillRect(c*cellWidth, r*cellWidth, cellWidth, cellWidth);
 			}
 			else if(state == 2) // white cells
 			{
 				ctx.fillStyle = "#FFFFFF";
-				ctx.fillRect(c*cellWidth,r*cellWidth,cellWidth,cellWidth);	
+				ctx.fillRect(c*cellWidth, r*cellWidth, cellWidth, cellWidth);	
 			}
 		}
 	}
