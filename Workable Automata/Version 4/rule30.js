@@ -10,9 +10,9 @@ function rule30InitBoard() {
 
 	for (let r = 0; r < this.rows; r++) {
 		for (let c = 0; c < this.cols; c++) {
-			let temp = new Cell(this,1,r,c);
-			temp.setCurrentState(0, 1);
-			temp.setFutureState(0, 1);
+			let temp = new Cell(this, 1, r, c);
+			temp.setCurrentState(0, 0);
+			temp.setFutureState(0, 0);
 			result[r][c] = temp;
 		}
 	}
@@ -20,13 +20,11 @@ function rule30InitBoard() {
     // To get the center grid of the column 
     let centerC = Math.floor(this.cols/2);
 
-    result[0][centerC].setCurrentState(0, 0);
-    result[0][centerC].setFutureState(0, 0);
+    result[0][centerC].setCurrentState(0, 1);
+    result[0][centerC].setFutureState(0, 1);
 
 	this.grid = result;
 }
-
-
 
 //
 // Update Cell for Rule 30.
@@ -38,7 +36,7 @@ function rule30UpdateCell(posR, posC) {
 	
 	// Return nothing when reach the boarders and edges
 	if (posR == 0 || posC == 0 || posC+1 >= cols || posR+1 >= rows) {
-        cell.setFutureState(0, cell.state[0]);
+        cell.setFutureState(0, cell.state[1]);
         return;
     }
 
@@ -72,16 +70,17 @@ function rule30UpdateCell(posR, posC) {
 function rule30DrawBoard() {
 	let ctx = this.context;
 	let cellWidth = this.cellWidth;
-	let grid = this.grid;
+	let grid = this.board.grid;
 
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, this.canv.width, this.canv.height);
 
-    ctx.fillStyle = "#FFFFFFF";
-    // ************************************8  this.board.rows and this.board.cols ************/
-	for (let r = 0; r < this.rows; r++) {
-		for (let c = 0; c < this.cols; c++) {
-			let tempCell = grid[r][c];
+    ctx.fillStyle = "#000000";
+	for (let r = 0; r < this.board.rows; r++)
+	{
+		for (let c = 0; c < this.board.cols; c++)
+		{
+			let tempCell = grid[c][r];
 			let isAlive = tempCell.state[0];
 
 			if(isAlive == 1)
