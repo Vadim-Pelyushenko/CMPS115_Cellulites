@@ -107,7 +107,7 @@ function gameOfLifeDrawBoard()
 			let isAlive = tempCell.state[0];
 
 			if(isAlive == 1)
-				ctx.fillRect(r*cellWidth,c*cellWidth,cellWidth,cellWidth);
+				ctx.fillRect(c*cellWidth,r*cellWidth,cellWidth,cellWidth);
 		}
 	}
 }
@@ -263,7 +263,7 @@ function gameOfLifeDrawBoard2()
 			let isAlive = tempCell.state[0];
 
 			if(isAlive == 1)
-				ctx.fillRect(r*cellWidth,c*cellWidth,cellWidth,cellWidth);
+				ctx.fillRect(c*cellWidth,r*cellWidth,cellWidth,cellWidth);
 		}
 	}
 }
