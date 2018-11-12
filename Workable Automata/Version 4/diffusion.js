@@ -23,7 +23,12 @@ function diffusionInitBoard()
             }
 			result[r][c] = temp;
 		}
-	}
+    }
+    let center = result[Math.floor(this.rows/2)][Math.floor(this.cols/2)];
+	center.setCurrentState(0, 2);
+	center.setFutureState(0, 2);
+
+    this.grid = result;
 }
 
 /*****************************************************************************/
@@ -67,7 +72,7 @@ function diffusionUpdateCell(posR, posC)
     if (cell.futureState[0] == 2)
         return;
     
-    let rand = Math.random(Math.random()*8);
+    let rand = Math.floor(Math.random()*8);
     let neighR, neighC;
     switch(rand)
 	{
@@ -108,22 +113,22 @@ function diffusionUpdateCell(posR, posC)
     // If neighbor is not valid, don't do anything
 	if(neighR < 0 || neighR >= rows || neighC < 0 || neighC >= cols)
 	{
-		cell.setFutureState(0,1);
+		cell.setFutureState(0, 1);
 		return;
 	}
 
-	let target = grid[neighR][neighC];
+	let target = this.grid[neighR][neighC];
 
 	// If the spot is not already empty, or its claimed by another cell, leave it alone.
 	if(target.state[0] != 0 || target.futureState[0] != 0)
 	{
-		cell.setFutureState(0,1);
+		cell.setFutureState(0, 1);
 		return;
 	}
 
 	// console.log("moved into the empty cell");
-	cell.setFutureState(0,0);
-	target.setFutureState(0,1);
+	cell.setFutureState(0, 0);
+	target.setFutureState(0, 1);
 }
 
 /*****************************************************************************/
