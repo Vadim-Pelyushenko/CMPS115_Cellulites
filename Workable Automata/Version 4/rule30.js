@@ -31,36 +31,40 @@ function rule30InitBoard() {
 //
 // Update Cell for Rule 30.
 // Base on Rule 30 rules, this function will set the current cell state and future cell state.
-function rule30UpdateCell(posR, posC) {
-    // Return nothing when reach the boarders and edges
-    if (this.posR == 0 || this.posC == 0 || this.posC+1 >= this.cols || this.posR+1 >= this.rows) {
-        this.setFutureState(0, this.state[0]);
+function rule30UpdateCell(posR, posC) {	
+	let grid = this.grid;
+	let cell = grid[posR][posC];
+    let up = posR-1;
+	
+	// Return nothing when reach the boarders and edges
+	if (posR == 0 || posC == 0 || posC+1 >= cols || posR+1 >= rows) {
+        cell.setFutureState(0, cell.state[0]);
         return;
     }
 
-    let grid = this.board.grid;
-    let up = this.posR-1;
+    // let grid = this.grid;
+    // let up = posR-1;
     
-    let upleft = grid[up][this.posC-1].state[0];
-    let upcenter = grid[up][this.posC].state[0];
-	let upright = grid[up][this.posC+1].state[0];
+    let upleft = grid[up][posC-1].state[0];
+    let upcenter = grid[up][posC].state[0];
+	let upright = grid[up][posC+1].state[0];
 
     if(upleft == 0 && upcenter == 0 && upright == 0)
-		this.setFutureState(0, 1);
+		cell.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 0 && upright == 1)
-		this.setFutureState(0, 1);
+		cell.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 1 && upright == 0)
-		this.setFutureState(0, 1);
+		cell.setFutureState(0, 1);
 	if(upleft == 0 && upcenter == 1 && upright == 1)
-		this.setFutureState(0, 0);
+		cell.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 0 && upright == 0)
-		this.setFutureState(0, 0);
+		cell.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 0 && upright == 1)
-		this.setFutureState(0, 0);
+		cell.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 1 && upright == 0)
-		this.setFutureState(0, 0);
+		cell.setFutureState(0, 0);
 	if(upleft == 1 && upcenter == 1 && upright == 1)
-		this.setFutureState(0, 1);
+		cell.setFutureState(0, 1);
 }
 
 //
@@ -68,7 +72,7 @@ function rule30UpdateCell(posR, posC) {
 function rule30DrawBoard() {
 	let ctx = this.context;
 	let cellWidth = this.cellWidth;
-	let grid = this.board.grid;
+	let grid = this.grid;
 
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, this.canv.width, this.canv.height);
