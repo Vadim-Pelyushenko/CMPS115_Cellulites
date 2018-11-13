@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+
+    <script type="text/javascript" src="src/board.js"></script>
+    <script type="text/javascript" src="src/drawer.js"></script>
+    <script type="text/javascript" src="src/cell.js"></script>
+    <script type="text/javascript" src="src/input_controller.js"></script>
+    <script type="text/javascript" src="src/site_controller.js"></script>
+    <script type="text/javascript" src="src/game_of_life.js"></script>
+    <script type="text/javascript" src="src/rule30.js"></script>
+
+    <script>
+        function myFunction1() {
+            document.getElementById("TextBox").innerHTML =
+                "<figure><pre><code contenteditable='true'>\n" +
+                "function gameOfLifeInitBoard()\n" +
+                "{\n" +
+                "\tlet result = create2DArray(this.rows,this.cols);\n" +
+                "\n" +
+                "\tfor(let r = 0; r < this.rows; r++)\n" +
+                "\t{\n" +
+                "\t\tfor(let c = 0; c < this.cols; c++)\n" +
+                "\t\t{\n" +
+                "\t\t\tlet val = Math.floor(Math.random()*2);\n" +
+                "\n" +
+                "\t\t\tlet temp = new Cell(this,1,r,c);\n" +
+                "\t\t\ttemp.setCurrentState(0,val);\n" +
+                "\t\t\ttemp.setFutureState(0,0);\n" +
+                "\t\t\tresult[r][c] = temp;\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "\n" +
+                "\tthis.grid = result;\n" +
+                "}</code></pre></figure>"
+        }
+    </script>
+</head>
+
+
+<body id="top"> 
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg " id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Cellular Automata Simulator</a>
+            <!-- part that makes it responsive  -->
+        <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button>  
+        <!-- menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav> 
+
+
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+
+            <!-- The flexible grid (content) -->
+            <div class="main_holder" style = "display: flex;">
+
+                <!-- Left side with output and button -->
+                <div class="left_side" style = "flex: 40%; padding: 10%">
+                    <div id = "output">  </div>
+                    <div id = buttons_holder style = "padding-top: 15%">
+                        <button id="run" onclick="runSimulation()">Start/Reset</button>
+                        <button id="stop" onclick="stopSimulation()">Stop</button>
+                        <button id="resume" onclick="resumeSimulation()">Resume</button>
+                    </div>
+                </div>
+
+                <!-- Right side with presets and user selection -->
+                <div class="right_side" style = "flex: 60%;  padding: 5%;">
+
+                    <div id="TextBox" style = "padding-left: 10%; background-color: rgba(255,255,255,0.26);" align="left" color="white">
+
+                                <!-- Temporary replaced with the ones without text inside
+                                <div id="rowsDisplay">#Rows: </div>
+                                <div id="colsDisplay">#Cols: </div>
+                                <div id="cellWidthDisplay">CellWidth: </div>
+                                <div id="delayDisplay">Delay(Milliseconds): </div>
+                                <div id="initFuncDisplay">InitBoard Function: </div>
+                                <div id="updateFuncDisplay">UpdateCell Function: </div>
+                                <div id="drawFuncDisplay">DrawBoard Function: </div>  -->
+
+                                <div id="rowsDisplay"> </div>
+                                <div id="colsDisplay"> </div>
+                                <div id="cellWidthDisplay"> </div>
+                                <div id="delayDisplay"> </div>
+                                <div id="initFuncDisplay"> </div>
+                                <div id="updateFuncDisplay"> </div>
+                                <div id="drawFuncDisplay"> </div> 
+
+                                <!-- Block that sets parameters and delay easy to modify with style -->
+                                <div id = "set_parameters_block" style = "text-align: justify-all; padding-top: 1%;">
+                                    <p>
+                                    Set #Rows: <input type="text" id="quantityRowInput" value="100" style = "width:45px;">
+                                    Set #Cols: <input type="text" id="quantityColInput" value="100" style = "width:45px;">
+                                    Set CellWidth: <input type="text" id="cellWidthInput" value="5" style = "width:45px;">
+                                    <br>
+                                    <button type="button" onclick="setParameters()">Set Parameters</button>
+                                    </p>
+                                    <p>
+                                    Set Delay: <input type="text" id="delayInput" value="100" style = "width:45px;">
+                                    <br>
+                                    <button id="setDelay" onclick="setDelay()">Set Delay</button>
+                                    </p>
+                                <div>
+
+
+                                <!-- Block that lets the user choose which board to initialize -->
+                                <div id = "set_board_block" style = "text-align: justify-all; padding-top: 1%;">
+                                    <p>
+                                    Set InitBoard Function:
+                                    <br>
+                                    <button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Game of Life</button>
+                                    <button type="button" onclick="setBoardInitFunction(rule30InitBoard)">Rule 30</button>
+                                    </p>
+                                </div>
+
+                                <!-- Block that lets the user choose the update function -->
+                                <div id = "set_update_function_block" style = "text-align: justify-all; padding-top: 1%;">
+                                    <p>
+                                    Set UpdateCell Function: <br>
+                                    <button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell)">Game of Life</button>
+                                    <button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell2)">Fruitful Game of Life</button>
+                                    <button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell3)">Inverted Game of Life</button>
+                                    <button type="button" onclick="setCellUpdateFunction(rule30UpdateCell)">Rule 30</button>
+                                    </p>
+                                </div>
+
+
+
+
+                                <!-- Block that lets the user set the drawboard function -->
+                                <div id = "set_drawboard_function_block" style = "text-align: justify-all; padding-bottom: 0.5%;">
+                                    <p>
+                                    Set DrawBoard Function: <br>
+                                    <button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard)">Game of Life</button>
+                                    <button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard2)">Game of Life 2</button>
+                                    <button type="button" onclick="setDrawBoardFunction(rule30DrawBoard)">Rule 30</button> 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Cellular Automata Simulator 2018</p>
+        </div>
+    </footer>
+    
+
+</body>
+</html>
