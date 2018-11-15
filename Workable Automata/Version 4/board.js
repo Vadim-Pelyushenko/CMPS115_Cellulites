@@ -9,6 +9,7 @@ class Board
 	// The number of columns that there are
 	//
 	// grid
+	
 	// The entire grid of cells
 	//
 	// initBoard
@@ -115,8 +116,6 @@ class Board
 			console.log(msg);
 			return;
 		}
-
-		// printGameOfLifeBoard(this.grid);
 
 		for(let r = 0; r < this.rows; r++)
 		{
