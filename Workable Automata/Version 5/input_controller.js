@@ -102,6 +102,10 @@ function setCellUpdateFunction(updateFunc, func_name)
 			drawer.stopDrawing();
 			board.setCellUpdate(updateCellFunc);
 		}
+		else if(board !== null)
+		{
+			board.setCellUpdate(updateCellFunc);	
+		}
 		// PAUSES AND SWAPS OUT THE UPDATE FUNCTION
 
 		console.log("The Cell Update Function has been set to " + func_name);
@@ -146,6 +150,9 @@ function setDrawBoardFunction(drawFunc, func_name)
 			drawer.stopDrawing();
 			drawer.setDrawBoard(drawBoardFunc);
 		}
+		else if(drawer !== null)
+			drawer.setDrawBoard(drawBoardFunc);
+
 		// PAUSES & SWAPS OUT THE DRAWING FUNCTION
 
 		console.log("The Draw Board Function has been set to " + func_name);
