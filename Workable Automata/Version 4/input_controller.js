@@ -66,7 +66,7 @@ function createBoard()
 	}
 }
 
-function setBoardInitFunction(initFunc, func_name)
+function setBoardInitFunction(initFunc)
 {
 	if(board == null)
 	{
@@ -78,13 +78,13 @@ function setBoardInitFunction(initFunc, func_name)
 	{
 		initBoardFunc = initFunc;
 
-		console.log("The Board Init Function has been set to " + func_name);
+		console.log("The Board Init Function has been set");
 		let initFuncDisplay = document.getElementById("initFuncDisplay");
-		initFuncDisplay.innerHTML = "InitBoard Function: " + func_name;
+		initFuncDisplay.innerHTML = "InitBoard Function: SET";
 	}
 }
 
-function setCellUpdateFunction(updateFunc, func_name)
+function setCellUpdateFunction(updateFunc)
 {
 	if(board == null)
 	{
@@ -96,21 +96,9 @@ function setCellUpdateFunction(updateFunc, func_name)
 	{
 		updateCellFunc = updateFunc;
 
-		// PAUSES AND SWAPS OUT THE UPDATE FUNCTION
-		if(drawer.isRunning)
-		{
-			drawer.stopDrawing();
-			board.setCellUpdate(updateCellFunc);
-		}
-		else if(board !== null)
-		{
-			board.setCellUpdate(updateCellFunc);	
-		}
-		// PAUSES AND SWAPS OUT THE UPDATE FUNCTION
-
-		console.log("The Cell Update Function has been set to " + func_name);
+		console.log("The Cell Update Function has been set");
 		let updateFuncDisplay = document.getElementById("updateFuncDisplay");
-		updateFuncDisplay.innerHTML = "UpdateCell Function: " + func_name;
+		updateFuncDisplay.innerHTML = "UpdateCell Function: SET";
 	}
 }
 
@@ -132,7 +120,7 @@ function createDrawer()
 		drawer = new Drawer(board,cellWidth);
 }
 
-function setDrawBoardFunction(drawFunc, func_name)
+function setDrawBoardFunction(drawFunc)
 {
 	if(drawer == null)
 	{
@@ -144,20 +132,9 @@ function setDrawBoardFunction(drawFunc, func_name)
 	{
 		drawBoardFunc = drawFunc;
 
-		// PAUSES & SWAPS OUT THE DRAWING FUNCTION
-		if(drawer.isRunning)
-		{
-			drawer.stopDrawing();
-			drawer.setDrawBoard(drawBoardFunc);
-		}
-		else if(drawer !== null)
-			drawer.setDrawBoard(drawBoardFunc);
-
-		// PAUSES & SWAPS OUT THE DRAWING FUNCTION
-
-		console.log("The Draw Board Function has been set to " + func_name);
+		console.log("The Draw Board Function has been set");
 		let updateFuncDisplay = document.getElementById("drawFuncDisplay");
-		drawFuncDisplay.innerHTML = "DrawBoard Function: " + func_name;
+		drawFuncDisplay.innerHTML = "DrawBoard Function: SET";
 	}
 }
 

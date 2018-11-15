@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="site_controller.js"></script>
 
 		<script type="text/javascript" src="game_of_life.js"></script>
+		<script type="text/javascript" src="flowingWater1.js"></script>
 	</head>
 
 	<body>
@@ -30,13 +31,13 @@
 		<hr>
 
 		<p>
-			Set #Rows: <input type="text" id="quantityRowInput" value="100">
+			Set #Rows: <input type="text" id="quantityRowInput" value="40">
 		</p>
 		<p>
-			Set #Cols: <input type="text" id="quantityColInput" value="100">
+			Set #Cols: <input type="text" id="quantityColInput" value="40">
 		</p>
 		<p>
-			Set CellWidth: <input type="text" id="cellWidthInput" value="5">
+			Set CellWidth: <input type="text" id="cellWidthInput" value="10">
 		</p>
 		<button type="button" onclick="setParameters()">Set Parameters</button>
 		<br>
@@ -47,45 +48,21 @@
 		<button id="setDelay" onclick="setDelay()">Set Delay</button>
 		<br>
 		<br>
-
-		<hr>
-		<p>Which function would you like to create?
-			<select onchange="select_Event(this)">
-				<option value="nothing"></option>
-				<option value="initBoard">Initialization</option>
-				<option value="updateCell">Cell Updating</option>
-				<option value="drawBoard">Drawing Cells</option>
-			</select>
-			<select onchange="set_Preset"></select>
-		</p>
-
-		<div id="functionEditingPart" style="display: none">
-			<p>
-				Name your function:
-				<input id="functionNameInput" type="text" cols="25"></input>
-			</p>
-			<textarea rows="20" cols="100" id="functionInputArea" 
-			placeholder="Write your function code here,&#10;correct function header required"></textarea>
-			<br>
-			<button id="codeConfirmation" onclick="confirmCode()">Confirm your code</button>
-		</div>
-		
-		<!-- 	
 		<p>Set InitBoard Function:</p>
 		<button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Game of Life</button>
+		<button type="button" onclick="setBoardInitFunction(waterInitBoard)">Flowing Water</button>
 		<br>
 		<br>
 		<p>Set UpdateCell Function:</p>
 		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell)">Game of Life</button>
-		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell2)">Fruitful Game of Life</button>
-		<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell3)">Inverted Game of Life</button>
+		<button type="button" onclick="setCellUpdateFunction(waterUpdateCell)">Flowing Water</button>
 		<br>
 		<br>
 		<p>Set DrawBoard Function:</p>
 		<button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard)">Game of Life</button>
 		<button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard2)">Game of Life 2</button>
+		<button type="button" onclick="setDrawBoardFunction(waterDrawBoard)">Flowing Water</button>
 		<br>
-		<br> 
-		-->
+		<br>
 	</body>
 </html>
