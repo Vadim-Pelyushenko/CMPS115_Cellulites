@@ -96,6 +96,12 @@ function setCellUpdateFunction(updateFunc)
 	{
 		updateCellFunc = updateFunc;
 
+		// PAUSES AND SWAPS OUT THE UPDATE FUNCTION
+		if(drawer.isRunning)
+			drawer.stopDrawing();
+		board.setCellUpdate(updateCellFunc);
+		// PAUSES AND SWAPS OUT THE UPDATE FUNCTION
+
 		console.log("The Cell Update Function has been set");
 		let updateFuncDisplay = document.getElementById("updateFuncDisplay");
 		updateFuncDisplay.innerHTML = "UpdateCell Function: SET";
@@ -131,6 +137,12 @@ function setDrawBoardFunction(drawFunc)
 	else
 	{
 		drawBoardFunc = drawFunc;
+
+		// PAUSES & SWAPS OUT THE DRAWING FUNCTION
+		if(drawer.isRunning)
+			drawer.stopDrawing();
+		drawer.setDrawBoard(drawBoardFunc);
+		// PAUSES & SWAPS OUT THE DRAWING FUNCTION
 
 		console.log("The Draw Board Function has been set");
 		let updateFuncDisplay = document.getElementById("drawFuncDisplay");
