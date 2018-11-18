@@ -18,12 +18,14 @@
     <script type="text/javascript" src="src/site_controller.js"></script>
     <script type="text/javascript" src="src/game_of_life.js"></script>
     <script type="text/javascript" src="src/rule30.js"></script>
+    <script type="text/javascript" src="src/diffusion.js"></script>
+
 
     <script>
         function myFunction1() {
             document.getElementById("TextBox").innerHTML =
                 "<figure><pre><code contenteditable='true'>\n" +
-                "function gameOfLifeInitBoard()\n" +
+                "function InitBoard()\n" +
                 "{\n" +
                 "\tlet result = create2DArray(this.rows,this.cols);\n" +
                 "\n" +
@@ -51,16 +53,16 @@
     <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg " id="mainNav">
         <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Cellular Automata Simulator</a>
             <!-- part that makes it responsive  -->
-        <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button>  
-        <!-- menu -->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
-                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
-                <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
-            </ul>
+            <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button>
+            <!-- menu -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a>    </li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>      </li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="contact.html">Contact</a>  </li>
+                </ul>
+            </div>
         </div>
-    </div>
     </nav> 
 
 
@@ -85,9 +87,8 @@
 
                     <!-- Testing saving file button -->
                     <a href="src/game_of_life.js" download>
-                        <img src="downloadbutton.jpg" height="30" width="30">
+                        <img src="assets/img/downloadbutton.jpg" height="30" width="30">
                     </a>
-
 
                     <div id="TextBox" style = "padding-left: 10%; background-color: rgba(255,255,255,0.26);" align="left" color="white">
 
@@ -186,8 +187,28 @@
                                                             setBoardInitFunction(rule30InitBoard);
                                                             setCellUpdateFunction(rule30UpdateCell);
                                                             setDrawBoardFunction(rule30DrawBoard)"> Rule30
-                                    </SELECT>
 
+                                        <OPTION onclick="setParameters();
+                                                            setDelay();
+                                                            setBoardInitFunction(diffusionInitBoard);
+                                                            setCellUpdateFunction(diffusionUpdateCell);
+                                                            setDrawBoardFunction(diffusionDrawBoard)"> Diffusion Limited Aggregation
+
+                                        <OPTION onclick="myFunction1()"> DisplayCode
+                                    </SELECT>
+                                </div>
+                                    <br>
+                                <div id="SettingStateColor">
+                                    <!--<p>Which function would you like to create?-->
+                                        <!--<select onchange="select_Event(this)">-->
+                                            <!--<option value="nothing"></option>-->
+                                            <!--<option value="initBoard">Initialization</option>-->
+                                            <!--<option value="updateCell">Cell Updating</option>-->
+                                            <!--<option value="drawBoard">Drawing Cells</option>-->
+                                        <!--</select>-->
+                                    <!--</p>-->
+                                    <textarea id="StateColorInput" placeholder="0->#XXXXXX&#10;1->#XXXXXX&#10;....&#10;...." rows="4" cols="50"></textarea>
+                                    <button  id="StateColorConfirm" type="button" onclick="confirmStateColor()">Do Stuff</button>
                                 </div>
 
                             </div>
