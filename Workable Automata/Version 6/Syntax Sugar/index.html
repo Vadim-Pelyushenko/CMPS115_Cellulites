@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Locality Parser</title>
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body>
+		<p>
+			let count = 0;<br>
+			let >local< = $(NW,N,NE,W,E,SW,S,SE) ~ [0]<br>
+			count++;<br>
+			let val = 7;<br>
+		</p>
+		<textarea rows="4" cols="50" placeholder="let >local< = $(NW,N,NE,W,E,SW,S,SE) ~ [0];" 
+				  id="codeInput"></textarea>
+		<br>
+		<button id="compile" onclick="compile()">Compile The Code</button>
+		<p>Generated code is in console</p>
+		<!-- <p id="compiledCode"><span style="color: red">Nothing here yet</span></p> -->
+	</body>
+</html>
