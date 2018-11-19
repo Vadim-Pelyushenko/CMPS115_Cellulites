@@ -1,0 +1,45 @@
+// This code here uses the sugared syntax. The code below does not.
+// Both of these code segments do the same thing. Consider which one
+// you'd prefer to write.
+
+let >local< = $(NW,N,NE,W,E,SW,S,SE) ~ [0];
+
+let count = 0;
+for(let k = 0; k < local.length; k++)
+	if(local[k].state[0] == 1)
+		count++;
+
+//------------------------------------------
+
+let up = posR - 1;
+let down = posR + 1;
+let left = posC - 1;
+let right = posC + 1;
+
+// COUNTING LIVE NEIGHBORS
+// upper three neighbors
+if(up >= 0 && left >= 0 && grid[up][left].state[0] == 1)
+	count++;
+
+if(up >= 0 && grid[up][posC].state[0] == 1)
+	count++;
+
+if(up >= 0 && right < cols && grid[up][right].state[0] == 1)
+	count++;
+
+// middle two neighbors
+if(left >= 0 && grid[posR][left].state[0] == 1)
+	count++;
+
+if(right < cols && grid[posR][right].state[0] == 1)
+	count++;
+
+// bottom three neighbors
+if(down < rows && left >= 0 && grid[down][left].state[0] == 1)
+	count++;
+
+if(down < rows && grid[down][posC].state[0] == 1)
+	count++;
+
+if(down < rows && right < cols && grid[down][right].state[0] == 1)
+	count++;
