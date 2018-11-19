@@ -10,12 +10,13 @@ function compile()
 	let lines = rawCode.split("\n");
 	for(let i = 0; i < lines.length; i++)
 	{
-		let line = lines[i].trim();
-		if(line.length < 13 || line.substring(0,13) !== "let >local< =")
+		let line = lines[i];
+		let trimmed = line.trim();
+		if(trimmed.length < 13 || trimmed.substring(0,13) !== "let >local< =")
 			result += line + "\n";
 		else
 		{
-			let parsed = parseLocality(line.substring(13));
+			let parsed = parseLocality(trimmed.substring(13));
 			if(parsed == null)
 			{
 				console.log("THERE WAS AN ERROR IN PARSING");
