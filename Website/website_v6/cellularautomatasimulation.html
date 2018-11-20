@@ -46,10 +46,17 @@
                 "}</code></pre></figure>"
         }
     </script>
+
+    <script>
+        function onClickEventTest()
+        {
+            console.log();
+        }
+    </script>
 </head>
 
 
-<body id="top"> 
+<body id="top" onmousedown="randomHexColor()">
     <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg " id="mainNav">
         <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Cellular Automata Simulator</a>
             <!-- part that makes it responsive  -->
@@ -74,7 +81,12 @@
 
                 <!-- Left side with output and button -->
                 <div class="left_side" style = "flex: 40%; padding: 10%">
-                    <div id = "output">  </div>
+                    <div id = "output">
+
+                    </div>
+
+                    <textarea id="StateChooser" rows="1" cols="1"></textarea>
+
                     <div id = buttons_holder style = "padding-top: 15%">
                         <button id="run" onclick="runSimulation()">Start/Reset</button>
                         <button id="stop" onclick="stopSimulation()">Stop</button>
@@ -208,7 +220,8 @@
                                         <!--</select>-->
                                     <!--</p>-->
                                     <textarea id="StateColorInput" placeholder="0->#XXXXXX&#10;1->#XXXXXX&#10;....&#10;...." rows="4" cols="50"></textarea>
-                                    <button  id="StateColorConfirm" type="button" onclick="confirmStateColor()">Do Stuff</button>
+                                    <button  id="StateColorConfirm" type="button" onclick="confirmStateColor()">Choose Colors</button>
+                                    <textarea id="StateQuantity"  rows="4" cols="4"></textarea>
                                 </div>
 
                             </div>
