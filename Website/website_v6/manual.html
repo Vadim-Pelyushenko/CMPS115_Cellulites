@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Manual - Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css"> 
+</head>
+
+
+ <body>
+ 	<nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Manual</a>
+
+    <!-- part that makes it responsive  -->
+    <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button> 
+
+    <!-- menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+
+            	<li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="cellularautomatasimulation.html">Home</a>  </li>
+
+            	<li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+
+            </ul>
+        </div>
+    </div>
+    </nav> 
+
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+    <div class="intro-body">
+
+ 	<!-- Manual -->
+ 	<div id = "manual"> 
+     		<p>
+                <font size = "7" >
+                    <b>
+                     The Manual
+                    </b>
+                </font>
+            </p>
+ 	</div>
+
+    <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    What is a cellular automata?
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>A cellular Automata is the 
+            plural form of cellular automaton. A cellular automaton (CA) is a model of a system of "cell" objects with the following characteristics:
+            <br />
+            <br />
+
+            <b>
+                <font size = "4.5">
+                     Grid:
+                </font> 
+            </b> 
+            <br />
+            The cells live on a grid. 
+            <br />
+            <br />
+            <b> 
+                <font size = "4.5">
+                    State: 
+                </font>        
+            </b>
+            <br />
+            Each cell has a state.
+            </br>
+            <br />
+            <b> 
+                <font size = "4.5">
+                    Neighborhood: 
+                </font>
+            </b>
+            <br />
+            This can be defined in any number of ways, but it is typically a list of adjacent cells.
+        </p>
+    </div>
+
+    <div align = "center">
+        <p>
+            <font size = "5">
+                <b>
+                    How to operate our simulator website
+                </b>
+            </font>
+            <br />
+            <img src = "photos/WebsitePageView.PNG" alt = "website" style = "width:900px;height:500px; border: 5px solid white">
+
+        </p>
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Set #Rows, #Cols, and CellWidth <img src = "photos/RowsandCols.png" alt = "website" align = "right"  style =
+                        "width: 500px;height:100px; border: 5px solid white">
+
+                    </b>
+                </font>
+
+                <br />
+                This section allows you to specify the size of the grid and how large you would like your cells to be.
+
+                <br />
+                The #Rows and #Cols allows you to specify the columns and rows that go into your grid.
+
+                <br /> 
+                The Cellwidth allows you specify the sizing of each cell within the grid.
+
+            </p>
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Set Delay      <img src = "photos/Delay.png" alt = "website" align = "right" style = "width:300px;height:100px; border: 5px solid white">
+                    </b>
+                </font>
+
+                <br />
+                Set delay specifies how much time there is between updates of cells.
+                <br />
+                The shorter the delay, the faster the grid updates.
+            </p>
+    </div>
+
+    <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Set InitBoard function  <img src = "photos/init.png" alt = "website" align = "right" style = "width:300px;height:100px; border: 5px solid white">
+                    </b>
+                </font>
+                <br />
+                The InitBoard function is the "initial board function". 
+                <br />
+                This allows you to set what the initial board will look like. 
+            </p>
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Set UpdateCell function  <img src = "photos/updatecell.png" alt = "website" align = "right" style = "width:500px;height:100px; border: 5px solid white">
+                    </b>
+                </font>
+                <br />
+                The UpdateCell function updates the cells. 
+                <br />
+                This defines how the cells interact with each other.
+            </p>
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Set DrawBoard Function <img src = "photos/DrawBoard.png" alt = "website" align = "right" style = "width:500px;height:100px; border: 5px solid white">
+                    </b>
+                </font>
+                <br />
+                The set DrawBoard Function allows you to specify the colors of the state of the cell
+                <br />
+                <br />
+                <br />
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Preset List     <img src = "photos/preset.png" alt = "website" align = "right" style = "width:300px;height:400px; border: 5px solid white">
+                    </b>
+                </font>
+                <br />
+                The preset list is a list of preset CA's that you can click through and see.
+            </p>
+    </div>
+
+      <div align = "left">
+            <p>
+                <font size = "4.5">
+                    <b>
+                        Change colors
+                    </b>
+                </font>
+                <br />
+                The bottom box is set there to allow you to change the colors of the grid. 
+                <br />
+                The numbers each specify a certain state.
+                <br />
+                For the colors, just enter the hex representation coding in the format #XXXXXX
+
+                <img src = "photos/color.png" alt = "website" style = "width:600px;height:200px; border: 5px solid white">
+            </p>
+    </div>
+
+    </div>
+    </header>
+
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Cellular Automata Simulator 2018</p>
+        </div>
+    </footer>
+
+</body>
+</html>
