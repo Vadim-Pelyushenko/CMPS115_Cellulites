@@ -110,7 +110,7 @@ class Board
 	// Updates the board using the set updateStates
 	updateBoard()
 	{
-		if(this.initBoard == null || !(typeof this.initBoard === "function"))
+		if(this.cellUpdate == null || !(typeof this.cellUpdate === "function"))
 		{
 			let msg = "(updateBoard)";
 			msg += " THE CELL UPDATE FUNCTION HAS NOT BEEN SET";
@@ -265,4 +265,21 @@ function printGameOfLifeTempBoard(grid)
 		}
 		console.log(r + " " + result + "ROWEND");
 	}
+}
+
+function copyGrid(grid)
+{
+	let result = new Array(grid.length);
+
+	for(let r = 0; r < grid.length; r++)
+	{
+		result[r] = new Array(grid[r].length);
+
+		for(let c = 0; c < result[r].length; c++)
+		{
+			result[r][c] = copyCell(grid[r][c]);
+		}
+	}
+
+	return result;
 }

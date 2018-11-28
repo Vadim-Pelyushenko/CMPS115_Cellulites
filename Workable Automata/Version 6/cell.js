@@ -76,3 +76,21 @@ class Cell
 			this.futureState[ind] = this.state[ind];
 	}
 }
+
+function copyCell(cell)
+{
+	let cState = new Array(cell.state.length);
+	let cFState = new Array(cell.state.length);
+
+	for(let k = 0; k < cell.state.length; k++)
+	{
+		cState[k] = cell.state[k];
+		cFState[k] = cell.futureState[k];
+	}
+
+	let result = new Cell(cell.board,cell.dataWidth,cell.posR,cell.posC);
+	result.state = cState;
+	result.futureState = cFState;
+
+	return result;
+}

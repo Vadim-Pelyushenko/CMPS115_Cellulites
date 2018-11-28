@@ -10,7 +10,10 @@ var ide_controller = new IDE_Controller();
 // Put in the initial CA's to have in the preset list
 createPresets();
 
+var initForm = null;
 var initBoardFunc = null;
+var initBoardState = null;
+
 var updateCellFunc = null;
 var drawBoardFunc = null;
 
@@ -62,7 +65,7 @@ function runSimulation()
 	// drawer.startDrawing(delay);
 	// drawer.frame = 0;
 
-	if(initBoardFunc == null || updateCellFunc == null || drawBoardFunc == null)
+	if(initForm === null || updateCellFunc === null || drawBoardFunc === null)
 	{
 		console.log("NOT ALL OF THE FUNCTIONS HAVE BEEN SET. CANNOT START SIMULATION");
 		return;
@@ -70,8 +73,21 @@ function runSimulation()
 
 	board.setInitBoard(initBoardFunc);
 	board.initializeBoard();
-	board.setCellUpdate(updateCellFunc);
+	// if(initForm === "compute-each")
+	// {
+	// 	board.setInitBoard(initBoardFunc);
+	// 	board.initializeBoard();
+	// }
+	// else
+	// {
+	// 	board.grid = ide_controller.simulating_group.initBoardState;
+	// 	// board.grid = copyGrid(initBoardState);
+	// 	// let initFunc;
+	// 	// eval("initFunc = function(){this.grid = copyGrid(initBoardState);}");
+	// 	// board.setInitBoard(initFunc);
+	// }
 
+	board.setCellUpdate(updateCellFunc);
 	drawer.setDrawBoard(drawBoardFunc);
 
 	if(drawer.isRunning)
@@ -201,7 +217,28 @@ function compile_all()
 	ide_controller.saveCurrentProgress();
 
 	ide_controller.compile_func_group(func_group);
-	setBoardInitFunction(func_group.initBoardCompiled,func_group.initBoardName);
+	// console.log(func_group.initBoardCompiled);
+
+
+	if(func_group.initBoardForm === "compute-each")
+	{
+		setBoardInitFunction(func_group.initBoardCompiled,func_group.initBoardName);
+		console.log("compute-each compiled");
+	}
+	else if(func_group.initBoardForm === "literal")
+	{
+		let initFunc;
+		eval("initFunc = function(){this.grid = copyGrid(func_group.initBoardState);}");	
+		setBoardInitFunction(initFunc,func_group.initBoardName);
+	}
+	else
+	{
+		console.log("NO VALID INITBOARD FORM, COMPILATION FAILED");
+		return;
+	}
+
+	initForm = func_group.initBoardForm;
+
 	setCellUpdateFunction(func_group.updateCellCompiled,func_group.updateCellName);
 	setDrawBoardFunction(func_group.drawBoardCompiled,func_group.drawBoardName);
 
@@ -220,4 +257,31 @@ function new_automaton()
 	console.log("New Automaton clicked");
 	ide_controller.set_simulating(null);
 	document.getElementById("automatonName").value = "";
+}
+
+function createInitInput(numRows,numCols,numData)
+{
+	let result = "";
+
+	for(let i = 0; i < numRows; i++)
+	{
+		let line = "{";
+		for(let j = 0; j < numCols; j++)
+		{
+			let col = "[";
+			for(let k = 0; k < numData; k++)
+			{
+				col += Math.floor(Math.random()*10) + ",";
+			}
+			col = col.substring(0,col.length-1);
+			col += "],";
+			line += col;
+		}
+		line = line.substring(0,line.length-1);
+		line += "},";
+		result += line;
+	}
+	result = result.substring(0,result.length-1);
+
+	return result;
 }

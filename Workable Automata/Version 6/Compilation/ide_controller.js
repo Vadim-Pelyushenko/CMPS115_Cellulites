@@ -86,7 +86,10 @@ class IDE_Controller
 		}
 		else
 		{
+			console.log("Old name: " + sim.groupName);
 			sim.groupName = name;
+			console.log("New name: " + sim.groupName);
+
 			if(sim.groupIndex != -1)
 			{
 				// console.log("Name change, index in list: " + sim.groupIndex);
@@ -101,7 +104,9 @@ class IDE_Controller
 				// console.log("old: " + menu.getElementsByTagName('option')[sim.groupIndex].innerHTML);
 				// console.log("new: " + name);
 
-				menu.getElementsByTagName('option')[sim.groupIndex].innerHTML = name;
+				let correspondingOption = menu.getElementsByTagName('option')[sim.groupIndex];
+				correspondingOption.innerHTML = name;
+				correspondingOption.value = name;
 			}
 		}
 	}

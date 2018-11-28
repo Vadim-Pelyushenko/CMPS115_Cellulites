@@ -23,7 +23,11 @@ function parseInitialization(rawData)
 
 	for(let i = 0; i < numRows; i++)
 	{
-		let cols = rows[i].match(/\[[^\{\}]\]/g);
+		let currRow = rows[i];
+		currRow = currRow.substring(1,currRow.length-1);
+		// console.log("ROW " + i + ": " + currRow);
+
+		let cols = currRow.match(/\[[^\[\]]+\]/g);
 
 		if(numCols == -1)
 			numCols = cols.length;
@@ -41,7 +45,12 @@ function parseInitialization(rawData)
 
 		for(let j = 0; j < numCols; j++)
 		{
-			let data = cols[j].match(/\D[\d]+\D/g);
+			let currCol = cols[j];
+			currCol = currCol.substring(1,currCol.length-1);
+			// console.log("\tCOLUMN " + j + ": " + currCol);
+
+			let data = currCol.match(/[+-]?[0-9]+/g);
+			// console.log("\t\tData in row " + i + ", col " + j + ": " + data);
 
 			if(numData == -1)
 				numData = data.length;
@@ -60,8 +69,9 @@ function parseInitialization(rawData)
 
 			for(let k = 0; k < data.length; k++)
 			{
-				grid[i][j].setCurrentState(k,data[k]);
-				grid[i][j].setFutureState(k,data[k]);
+				// console.log("\t\tdata[" + k + "]: " + data[k]);
+				grid[i][j].setCurrentState(k,parseInt(data[k]));
+				grid[i][j].setFutureState(k,parseInt(data[k]));
 			}
 		}
 	}
