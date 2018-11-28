@@ -2,12 +2,14 @@ var rows;
 var cols;
 var cellWidth;
 var gridColor;
+var grid;
 
 var canv = document.getElementById("targetCanvas");
 canv.addEventListener("click",handleClick);
 var ctx = canv.getContext("2d");
 
 changeParams();
+
 
 function changeParams()
 {
@@ -19,7 +21,9 @@ function changeParams()
 	canv.width = cols*cellWidth;
 	canv.height = rows*cellWidth;
 
-	makeGrid();
+	constructGrid();
+	drawBoard();
+	drawGrid();
 }
 
 function handleClick(evt)
@@ -29,6 +33,13 @@ function handleClick(evt)
 	let col = Math.floor(mousePos.x / cellWidth);
 	let row = Math.floor(mousePos.y / cellWidth);
 	console.log("Row: " + row + ", Col: " + col);
+
+	grid[row][col] = 1 - grid[row][col];
+	console.log("toggled");
+
+	drawBoard();
+	drawGrid();
+
 	console.log();
 }
 
@@ -41,7 +52,7 @@ function getMousePos(canvas,evt)
     };
 }
 
-function makeGrid()
+function drawGrid()
 {
 	ctx.strokeStyle = gridColor;
 	ctx.strokeRect(0,0,canv.width,canv.height);
@@ -65,4 +76,60 @@ function makeGrid()
 		ctx.lineTo(canv.width-1,row*cellWidth);
 		ctx.stroke();
 	}
+}
+
+function constructGrid()
+{
+	grid = new Array(rows);
+
+	for(let k = 0; k < rows; k++)
+	{
+		grid[k] = new Array(cols);
+
+		for(let c = 0; c < cols; c++)
+		{
+			grid[k][c] = 0;
+		}
+	}
+
+	grid[0][0] = 1;
+}
+
+function drawBoard()
+{
+	for(let r = 0; r < rows; r++)
+	{
+		for(let c = 0; c < cols; c++)
+		{
+			let val = grid[r][c];
+
+			if(val === 0)
+				ctx.fillStyle = "#FFFFFF";
+			else if(val === 1)
+				ctx.fillStyle = "#000000";
+			else
+				ctx.fillStyle = "#006600";
+
+			ctx.fillRect(c*cellWidth,r*cellWidth,cellWidth,cellWidth);
+		}
+	}
+}
+
+function printGrid()
+{
+	let result = "";
+
+	for(let r = 0; r < grid.length; r++)
+	{
+		let line = "{";
+		for(let c = 0; c < grid[r].length; c++)
+		{
+			line += "[" + grid[r][c] + "],";
+		}
+		line = line.substring(0,line.length-1);
+		result += line + "},\n";
+	}
+	result = result.substring(0,result.length-2);
+
+	return result;
 }
