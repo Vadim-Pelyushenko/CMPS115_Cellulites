@@ -230,6 +230,17 @@ function compile_all()
 		let initFunc;
 		eval("initFunc = function(){this.grid = copyGrid(func_group.initBoardState);}");	
 		setBoardInitFunction(initFunc,func_group.initBoardName);
+
+		if(board !== null)
+		{
+			let correct = func_group.initBoardState;
+			let prevArea = rows*cols*cellWidth*cellWidth;
+			let totalCells = correct.length * correct[0].length;
+			document.getElementById("quantityRowInput").value = correct.length;
+			document.getElementById("quantityColInput").value = correct[0].length;
+			document.getElementById("cellWidthInput").value = Math.ceil(Math.sqrt(prevArea/totalCells));
+			setParameters();
+		}
 	}
 	else
 	{
