@@ -132,19 +132,20 @@ function createPresets()
 {
 	// Adding the Game of Life Preset
 	let gol_funcs = gameOfLifeFunctionGroup();
-	// ide_controller.compile_func_group(gol_funcs);
 	ide_controller.add_function_group(gol_funcs);
 	func_group_into_presets(gol_funcs);
 
 	let gol_funcs2 = gameOfLifeFunctionGroup2();
-	// ide_controller.compile_func_group(gol_funcs2);
 	ide_controller.add_function_group(gol_funcs2);
 	func_group_into_presets(gol_funcs2);
 
 	let gol_funcs3 = gameOfLifeFunctionGroup3();
-	// ide_controller.compile_func_group(gol_funcs3);
 	ide_controller.add_function_group(gol_funcs3);
 	func_group_into_presets(gol_funcs3);
+
+	let gol_funcs4 = gameOfLifeFunctionGroup4();
+	ide_controller.add_function_group(gol_funcs4);
+	func_group_into_presets(gol_funcs4);
 
 	console.log("Created Presets");
 }
