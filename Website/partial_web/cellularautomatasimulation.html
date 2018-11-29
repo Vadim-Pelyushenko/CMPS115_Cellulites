@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.bs-example{
+		margin: 20px;
+	}
+</style>
+
+
+
+
+
+    <script type="text/javascript" src="src/board.js"></script>
+    <script type="text/javascript" src="src/drawer.js"></script>
+    <script type="text/javascript" src="src/cell.js"></script>
+    <script type="text/javascript" src="src/input_controller.js"></script>
+    <script type="text/javascript" src="src/site_controller.js"></script>
+    <script type="text/javascript" src="src/game_of_life.js"></script>
+    <script type="text/javascript" src="src/rule30.js"></script>
+
+
+
+    <script>
+        function myFunction1() {
+            document.getElementById("TextBox").innerHTML =
+                "<figure><pre><code contenteditable='true'>\n" +
+                "function gameOfLifeInitBoard()\n" +
+                "{\n" +
+                "\tlet result = create2DArray(this.rows,this.cols);\n" +
+                "\n" +
+                "\tfor(let r = 0; r < this.rows; r++)\n" +
+                "\t{\n" +
+                "\t\tfor(let c = 0; c < this.cols; c++)\n" +
+                "\t\t{\n" +
+                "\t\t\tlet val = Math.floor(Math.random()*2);\n" +
+                "\n" +
+                "\t\t\tlet temp = new Cell(this,1,r,c);\n" +
+                "\t\t\ttemp.setCurrentState(0,val);\n" +
+                "\t\t\ttemp.setFutureState(0,0);\n" +
+                "\t\t\tresult[r][c] = temp;\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "\n" +
+                "\tthis.grid = result;\n" +
+                "}</code></pre></figure>"
+        }
+    </script>
+
+    <script>
+    	function displayTab(evt, tabSelection) {
+    	var i, tabcontent, tablinks;
+    	tabcontent = document.getElementsByClassName("tabcontent");
+    	for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    	}
+    	tablinks = document.getElementsByClassName("tablinks");
+    	for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    	}
+    	document.getElementById(tabSelection).style.display = "block";
+    	evt.currentTarget.className += " active";
+}
+</script>
+
+<script>
+    function hideDisplayButton(){
+        document.getElementById("changingDisplay").innerHTML = "";
+    };
+</script>
+
+<script>
+    function showDisplayButton(){
+        document.getElementById("changingDisplay").innerHTML = "Displaying the code";
+    };
+</script>
+
+
+
+
+</head>
+
+
+<body id="top"> 
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg " id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Cellular Automata Simulator</a>
+            <!-- part that makes it responsive  -->
+        <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button>  
+        <!-- menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+                <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav> 
+
+
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+
+            <!-- The flexible grid (content) -->
+            <div class="main_holder" style = "display: flex;">
+
+                <!-- Left side with output and button -->
+                <div class="left_side" style = "flex: 40%; padding: 10%">
+                   <!--  <div id = "validation" style = "overflow:hidden">  <p id="errorDisplay"> </p> </div> -->
+                    <div id = "validation" style = "overflow:hidden">  <p id="errorDisplay"> </p> </div>
+                    <div id = "output">  </div>
+                    <div id = buttons_holder style = "padding-top: 15%">
+                        <button id="run" onclick="runSimulation()">Start/Reset</button>
+                        <button id="stop" onclick="stopSimulation()">Stop</button>
+                        <button id="resume" onclick="resumeSimulation()">Resume</button>
+                    </div>
+
+
+                </div>
+
+                <!-- Right side with presets and user selection -->
+                <div class="right_side" style = "flex: 60%;  padding: 5%;">
+
+
+        <p id="rowsDisplay"> </p>
+        <p id="colsDisplay">  </p>
+        <p id="cellWidthDisplay">  </p>
+        <p id="delayDisplay">  </p>
+        <br>
+        <p id="initFuncDisplay">  </p>
+        <p id="updateFuncDisplay">  </p>
+        <p id="drawFuncDisplay">  </p>
+
+                <!-- Block that sets parameters and delay easy to modify with style -->
+               <!--  <div id = "set_parameters_block" style = "text-align: justify-all; padding-top: 3%; background-color: #A9A9A9;  "> -->
+                 <div id = "set_parameters_block" style = "text-align: left; padding-top: 3%; background-color: #A9A9A9;  ">
+                <p>
+                    Set #Rows: <input type="text" id="quantityRowInput" value="100" style = "width:45px;">
+                    Set #Cols: <input type="text" id="quantityColInput" value="100" style = "width:45px;">
+                    Set CellWidth: <input type="text" id="cellWidthInput" value="5" style = "width:45px;">
+                    <!-- <br> -->
+                    <button type="button" onclick="setParameters()">Set Parameters</button>
+                </p>
+                <p>
+                    Set Delay: <input type="text" id="delayInput" value="100" style = "width:45px;">
+                   <!--  <br> -->
+                    <button id="setDelay" onclick="setDelay()">Set Delay</button>
+                </p>
+               </div>
+
+
+
+                   <!--  To hold the tabs -->
+                   <div class="tab" style = "overflow:hidden;  border: 1px solid #ccc; background-color: #f1f1f1; ">
+
+                    <!-- Holds the current tab. Nothing here yet-->
+                    <!-- <button class="tablinks" style = "background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px; color: #ffd700" onclick="displayTab(event, 'Tab1')">Current File</button> -->
+
+                    <!-- Holds the Initialization tab-->
+                    	<button class="tablinks" style = "background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px;" onclick="select_Event('initBoard'); hideDisplayButton();">Initialization</button>
+                    <!-- Holds the Cell Updating tab-->
+                    	<button class="tablinks" style = "background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px;" onclick="select_Event('updateCell'); hideDisplayButton();">Cell Updating</button>
+                    <!--  Holds the Drawing Cells tab -->
+                    	<button class="tablinks" style = "background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px;" onclick="select_Event('drawBoard'); hideDisplayButton();">Drawing Cells</button>
+                   
+                    <!-- Extra Button to be replacable -->
+                   		<button class="tablinks" style = "visibility:hidden; background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px; color:#DAA520;" disabled><div id ="changingDisplay"> Displaying the code</div> </button>
+
+
+					<!--Hiden
+                   		<button class="tablinks" style = "display: none;background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 1%; transition: 0.3s; font-size: 17px;" onclick="select_Event('');"><div id ="changingDisplay"> Hiden: to Display the code</div> </button> -->
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div id="functionEditingPart"  style = "display: none; padding: 6px 12px; border: 1px solid #ccc; ">
+
+                    	<div id ="nameYourFunction"> Function name:
+                    		<input id="functionNameInput" type="text" cols="25">
+                    		</input>
+                        </div>
+
+                        <textarea rows="20" cols="100" id="functionInputArea" placeholder=""> 
+                        </textarea>
+
+
+
+
+
+
+
+						<!-- Display Initialize Game Of Life -->
+<!--                         <div id = "pDisplayInit" style = "white-space: pre; display:none">
+                        	function gameOfLifeInitBoard()
+                        	{
+                        		let result = create2DArray(this.rows,this.cols);
+                        		for(let r = 0; r < this.rows; r++)
+                        		{
+                        			for(let c = 0; c < this.cols; c++)
+                        			{
+                        				let val = Math.floor(Math.random()*2);
+                        				let temp = new Cell(this,1,r,c);
+                        				temp.setCurrentState(0,val);
+                        				temp.setFutureState(0,0);
+                        				result[r][c] = temp;
+                        			}
+                        		}
+                        		this.grid = result;
+                        	}
+                        </div>
+ -->
+                        <!-- Display Update Cell Game of Life -->
+                        <!-- <div id = "pDisplayUpdateCell" style = "white-space: pre; display:none">
+                        	function gameOfLifeUpdateCell(posR,posC)
+                        	{
+                        		let count = 0;
+                        		let grid = this.grid;
+								let rows = this.rows;
+								let cols = this.cols;
+								let cell = grid[posR][posC];
+
+								let up = posR - 1;
+								let down = posR + 1;
+								let left = posC - 1;
+								let right = posC + 1;
+
+								// COUNTING LIVE NEIGHBORS
+								// upper three neighbors
+								if(up >= 0 && left >= 0 && grid[up][left].state[0] == 1)
+									count++;
+
+								if(up >= 0 && grid[up][posC].state[0] == 1)
+									count++;
+
+								if(up >= 0 && right < cols && grid[up][right].state[0] == 1)
+									count++;
+
+								// middle two neighbors
+								if(left >= 0 && grid[posR][left].state[0] == 1)
+									count++;
+
+								if(right < cols && grid[posR][right].state[0] == 1)
+									count++;
+
+								// bottom three neighbors
+								if(down < rows && left >= 0 && grid[down][left].state[0] == 1)
+									count++;
+
+								if(down < rows && grid[down][posC].state[0] == 1)
+									count++;
+
+								if(down < rows && right < cols && grid[down][right].state[0] == 1)
+									count++;
+
+
+								// Updating state
+									let nextState;
+
+								if(cell.state[0] == 0)
+								{
+									if(count == 3)
+										nextState = 1;
+									else
+										nextState = 0;
+								}
+								else
+								{
+								if(count < 2 || count > 3)
+									nextState = 0;
+								else
+									nextState = 1;
+								}
+
+								// console.log("Live neighbors: " + count + "\n\n");
+								cell.setFutureState(0,nextState);
+								}
+							</div> -->
+							<br>
+							<button id="codeConfirmation" onclick="confirmCode()">Confirm your code</button> 
+					</div>
+
+                    <!--  Second div for function output
+ -->
+
+
+ <div id="functionDisplay"  style = "display: none; padding: 6px 12px; border: 1px solid #ccc;">
+
+                    <div id ="functionName" > Function name:
+                            <input id="functionNameOutput" type="text" cols="25">
+                            </input>
+                        </div>
+
+                        <textarea rows="20" cols="100" id="functionOutputArea"  placeholder=""> 
+                    </textarea>
+                                           <!-- Display Initialize Game Of Life -->
+                        <div id = "pDisplayInit"  style = "white-space: pre; display:none; ">
+                            function gameOfLifeInitBoard()
+                            {
+                                let result = create2DArray(this.rows,this.cols);
+                                for(let r = 0; r < this.rows; r++)
+                                {
+                                    for(let c = 0; c < this.cols; c++)
+                                    {
+                                        let val = Math.floor(Math.random()*2);
+                                        let temp = new Cell(this,1,r,c);
+                                        temp.setCurrentState(0,val);
+                                        temp.setFutureState(0,0);
+                                        result[r][c] = temp;
+                                    }
+                                }
+                                this.grid = result;
+                            }
+                        </div> 
+                                                <!-- Display Update Cell Game of Life -->
+                        <div id = "pDisplayUpdateCell" style = "white-space: pre; display:none">
+                            function gameOfLifeUpdateCell(posR,posC)
+                            {
+                                let count = 0;
+                                let grid = this.grid;
+                                let rows = this.rows;
+                                let cols = this.cols;
+                                let cell = grid[posR][posC];
+
+                                let up = posR - 1;
+                                let down = posR + 1;
+                                let left = posC - 1;
+                                let right = posC + 1;
+
+                                // COUNTING LIVE NEIGHBORS
+                                // upper three neighbors
+                                if(up >= 0 && left >= 0 && grid[up][left].state[0] == 1)
+                                    count++;
+
+                                if(up >= 0 && grid[up][posC].state[0] == 1)
+                                    count++;
+
+                                if(up >= 0 && right < cols && grid[up][right].state[0] == 1)
+                                    count++;
+
+                                // middle two neighbors
+                                if(left >= 0 && grid[posR][left].state[0] == 1)
+                                    count++;
+
+                                if(right < cols && grid[posR][right].state[0] == 1)
+                                    count++;
+
+                                // bottom three neighbors
+                                if(down < rows && left >= 0 && grid[down][left].state[0] == 1)
+                                    count++;
+
+                                if(down < rows && grid[down][posC].state[0] == 1)
+                                    count++;
+
+                                if(down < rows && right < cols && grid[down][right].state[0] == 1)
+                                    count++;
+
+
+                                // Updating state
+                                    let nextState;
+
+                                if(cell.state[0] == 0)
+                                {
+                                    if(count == 3)
+                                        nextState = 1;
+                                    else
+                                        nextState = 0;
+                                }
+                                else
+                                {
+                                if(count < 2 || count > 3)
+                                    nextState = 0;
+                                else
+                                    nextState = 1;
+                                }
+
+                                // console.log("Live neighbors: " + count + "\n\n");
+                                cell.setFutureState(0,nextState);
+                                }
+                            </div>
+                            <br>
+
+</div>
+<!--  Second div for function output
+ -->
+
+					
+
+					<div id ="displayCollection" style = "text-align: left; padding:1%; background-color: #A9A9A9;""  > 
+						Display:<br>
+						<button id="viewInit" onclick="displayInitFunction();showDisplayButton();">Display Initialization Game of Life</button>
+						<button id="viewCellUpdateGoL" onclick="displayCellUpdateGoL();showDisplayButton();">Display Cell Update Game of Life</button>
+					</div>
+
+					<br>
+
+
+					<div id = "presetsCollection" style = "text-align: left; padding: 1%; background-color: #A9A9A9;"  >
+						Presets:
+						<!-- <button type="button" onclick="setBoardInitFunction(gameOfLifeInitBoard)">Initialize Game of Life</button> -->
+
+						<input type="image" id="stop"  onclick="setBoardInitFunction(gameOfLifeInitBoard)" name="submit" src="img2.png" border="0" alt="Submit" style="width: 50px;" />
+
+
+
+
+
+
+						<button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell)">Game of Life</button>
+                        <button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell2)">Fruitful Game of Life</button>
+                        <button type="button" onclick="setCellUpdateFunction(gameOfLifeUpdateCell3)">Inverted Game of Life</button>
+                        <button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard)">Game of Life</button>
+                        <button type="button" onclick="setDrawBoardFunction(gameOfLifeDrawBoard2)">Game of Life 2</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</header>
+
+    
+
+    <footer>
+    	
+   
+
+
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Cellular Automata Simulator 2018</p>
+        </div>
+
+
+
+    </footer>
+    
+
+</body>
+</html>
