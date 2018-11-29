@@ -147,6 +147,10 @@ function createPresets()
 	ide_controller.add_function_group(gol_funcs4);
 	func_group_into_presets(gol_funcs4);
 
+	let gol_funcs5 = gameOfLifeFunctionGroup5();
+	ide_controller.add_function_group(gol_funcs5);
+	func_group_into_presets(gol_funcs5);
+
 	console.log("Created Presets");
 }
 
