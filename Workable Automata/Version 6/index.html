@@ -1,97 +1,99 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>John Conway</title>
-		<script type="text/javascript" src="game_of_life.js"></script>
+<head>
+	<title>John Conway</title>
+	<script type="text/javascript" src="game_of_life.js"></script>
+	<script type="text/javascript" src="rule30.js"></script>
+	<script type="text/javascript" src="diffusion.js"></script>
 
-		<script type="text/javascript" src="board.js"></script>
-		<script type="text/javascript" src="cell.js"></script>
-		<script type="text/javascript" src="drawer.js"></script>
-		<script type="text/javascript" src="input_controller.js"></script>
+	<script type="text/javascript" src="board.js"></script>
+	<script type="text/javascript" src="cell.js"></script>
+	<script type="text/javascript" src="drawer.js"></script>
+	<script type="text/javascript" src="input_controller.js"></script>
 
-		<script type="text/javascript" src="Compilation/ide_controller.js"></script>
-		<script type="text/javascript" src="Compilation/initialize_board_compiler.js"></script>
-		<script type="text/javascript" src="Compilation/update_cell_compiler.js"></script>
-		<script type="text/javascript" src="Compilation/draw_board_compiler.js"></script>
-		<script type="text/javascript" src="site_controller.js" defer></script>
-	</head>
+	<script type="text/javascript" src="Compilation/ide_controller.js"></script>
+	<script type="text/javascript" src="Compilation/initialize_board_compiler.js"></script>
+	<script type="text/javascript" src="Compilation/update_cell_compiler.js"></script>
+	<script type="text/javascript" src="Compilation/draw_board_compiler.js"></script>
+	<script type="text/javascript" src="site_controller.js" defer></script>
+</head>
 
-	<body>
-		<div id="output">This is where the simulator will go</div>
-		<button id="run" onclick="runSimulation()">Start/Reset</button>
-		<button id="stop" onclick="stopSimulation()">Stop</button>
-		<button id="resume" onclick="resumeSimulation()">Resume</button>
-		<hr>
+<body>
+<div id="output">This is where the simulator will go</div>
+<button id="run" onclick="runSimulation()">Start/Reset</button>
+<button id="stop" onclick="stopSimulation()">Stop</button>
+<button id="resume" onclick="resumeSimulation()">Resume</button>
+<hr>
 
-		<p id="rowsDisplay">#Rows: </p>
-		<p id="colsDisplay">#Cols: </p>
-		<p id="cellWidthDisplay">CellWidth: </p>
-		<p id="delayDisplay">Delay(Milliseconds): </p>
-		<br>
-		<p id="initFuncDisplay">InitBoard Function: </p>
-		<p id="updateFuncDisplay">UpdateCell Function: </p>
-		<p id="drawFuncDisplay">DrawBoard Function: </p>
+<p id="rowsDisplay">#Rows: </p>
+<p id="colsDisplay">#Cols: </p>
+<p id="cellWidthDisplay">CellWidth: </p>
+<p id="delayDisplay">Delay(Milliseconds): </p>
+<br>
+<p id="initFuncDisplay">InitBoard Function: </p>
+<p id="updateFuncDisplay">UpdateCell Function: </p>
+<p id="drawFuncDisplay">DrawBoard Function: </p>
 
-		<hr>
+<hr>
 
-		<p>
-			Set #Rows: <input type="text" id="quantityRowInput" value="100">
-		</p>
-		<p>
-			Set #Cols: <input type="text" id="quantityColInput" value="100">
-		</p>
-		<p>
-			Set CellWidth: <input type="text" id="cellWidthInput" value="5">
-		</p>
-		<button type="button" onclick="setParameters()">Set Parameters</button>
-		<br>
-		<br>
-		<p>
-			Set Delay: <input type="text" id="delayInput" value="100">
-		</p>
-		<button id="setDelay" onclick="setDelay()">Set Delay</button>
-		<br>
-		<br>
+<p>
+	Set #Rows: <input type="text" id="quantityRowInput" value="100">
+</p>
+<p>
+	Set #Cols: <input type="text" id="quantityColInput" value="100">
+</p>
+<p>
+	Set CellWidth: <input type="text" id="cellWidthInput" value="5">
+</p>
+<button type="button" onclick="setParameters()">Set Parameters</button>
+<br>
+<br>
+<p>
+	Set Delay: <input type="text" id="delayInput" value="100">
+</p>
+<button id="setDelay" onclick="setDelay()">Set Delay</button>
+<br>
+<br>
 
-		<hr>
-		<p>
-			<span id="autoNamePrompt">Name your Cellular Automaton: </span>
-			<input type="text" id="automatonName" style="margin-bottom: 6px"
-			oninput="automatonInputNameChanged()">
-			<br>
+<hr>
+<p>
+	<span id="autoNamePrompt">Name your Cellular Automaton: </span>
+	<input type="text" id="automatonName" style="margin-bottom: 6px"
+		   oninput="automatonInputNameChanged()">
+	<br>
 
-			Or select from a list of pre-made ones:
-			<select id="autoList" onchange="preset_into_editor(this)">
-				<option value="nothing"></option>
-				<!-- <option value="Game Of Life">Game Of Life</option> -->
-			</select><br><br>
+	Or select from a list of pre-made ones:
+	<select id="autoList" onchange="preset_into_editor(this)">
+		<option value="nothing"></option>
+		<!-- <option value="Game Of Life">Game Of Life</option> -->
+	</select><br><br>
 
-			Which function would you like to edit?
-			<select onchange="select_function(this)" id="functionSelection">
-				<option value="nothing"></option>
-				<option value="initBoard">Initialization</option>
-				<option value="updateCell">Cell Updating</option>
-				<option value="drawBoard">Drawing Cells</option>
-			</select><br>
-		</p>
+	Which function would you like to edit?
+	<select onchange="select_function(this)" id="functionSelection">
+		<option value="nothing"></option>
+		<option value="initBoard">Initialization</option>
+		<option value="updateCell">Cell Updating</option>
+		<option value="drawBoard">Drawing Cells</option>
+	</select><br>
+</p>
 
-		<div id="functionEditingPart" style="display: none">
-			<p>
-				Name your function:
-				<input id="functionNameInput" type="text" cols="25"></input>
-			</p>
-			<textarea rows="20" cols="100" id="functionInputArea" 
-			placeholder="Write your function code here, just code, no header needed"></textarea>
-			<br>
-			<input type="text" id="dataWidthInput" value="1" style="display: none">
-			<span id="formPromptAndInput" style="display: none;">
+<div id="functionEditingPart" style="display: none">
+	<p>
+		Name your function:
+		<input id="functionNameInput" type="text" cols="25"></input>
+	</p>
+	<textarea rows="20" cols="100" id="functionInputArea"
+			  placeholder="Write your function code here, just code, no header needed"></textarea>
+	<br>
+	<input type="text" id="dataWidthInput" value="1" style="display: none">
+	<span id="formPromptAndInput" style="display: none;">
 				Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px"><br>
-				<!-- THE FORM TYPE INPUT CORRECTLY DISPLAYS WHAT IS ALREADY STORED RIGHT NOW
-				     BUT CAN'T ACTUALLY BE CHANGED YET, ADD CODE TO DO THIS -->
+		<!-- THE FORM TYPE INPUT CORRECTLY DISPLAYS WHAT IS ALREADY STORED RIGHT NOW
+             BUT CAN'T ACTUALLY BE CHANGED YET, ADD CODE TO DO THIS -->
 			</span>
 
-			<button id="compileEverything" onclick="compile_all()">Compile All</button>
-			<button id="newAuto" onclick="new_automaton()">New Automaton</button>
-		</div>
-	</body>
+	<button id="compileEverything" onclick="compile_all()">Compile All</button>
+	<button id="newAuto" onclick="new_automaton()">New Automaton</button>
+</div>
+</body>
 </html>
