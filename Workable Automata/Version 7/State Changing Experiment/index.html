@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Grid Stuff</title>
+		<script type="text/javascript" src="script.js" defer></script>
+	</head>
+	<body>
+		<p>How many rows in your grid: <input type="text" id="rowInput" value="50"></p>
+		<p>How many cols in your grid: <input type="text" id="colInput" value="50"></p>
+		<p>Width of each cell in your grid: <input type="text" id="widthInput" value="10"></p>
+		<p>Color of grid lines: <input type="text" id="gridColorInput" value="#000000"></p>
+		<button onclick="changeParams()">Change Parameters</button>
+		<br><br>
+		<canvas id="targetCanvas" onmousemove="handleToggle(event)"
+		onmousedown="mouseDown(event)" onmouseup="resetToggling()"></canvas>
+		<p>Zoom Level: <span id="zoomDisplay">1.0</p></span>
+		<button onclick="zoomChange(0.25)">Zoom In</button>
+		<button onclick="zoomChange(-0.25)">Zoom Out</button>
+		<br>
+		<br>
+		<br>
+		<button onclick="printGrid()">PRINT GRID</button>
+	</body>
+</html>
