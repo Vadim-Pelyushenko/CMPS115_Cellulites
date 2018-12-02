@@ -11,8 +11,11 @@
 		<p>Color of grid lines: <input type="text" id="gridColorInput" value="#000000"></p>
 		<button onclick="changeParams()">Change Parameters</button>
 		<br><br>
-		<canvas id="targetCanvas" onmousemove="handleToggle(event)"
-		onmousedown="mouseDown(event)" onmouseup="resetToggling()"></canvas>
+		<canvas id="outputCanvas" onmousemove="outputMouseMove(event)"
+		onmousedown="outputMouseDown(event)" onmouseup="outputMouseUp()"></canvas>
+
+		<canvas id="targetCanvas" onmousemove="targetMouseMove(event)"
+		onmousedown="targetMouseDown(event)" onmouseup="targetMouseUp(event)"></canvas>
 		<p>
 			State: <input type="text" id="inputtedState" value="0"><br>
 			Zoom Level: <span id="zoomDisplay">1.0</p></span>

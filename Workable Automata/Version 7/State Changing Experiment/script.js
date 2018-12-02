@@ -11,16 +11,21 @@ var zoomRightColBound;
 var zoomTopRowBound;
 var zoomBottomRowBound;
 
+var targetCanvasPrevPos = null;
+
 var mouseIsDown = false;
+var targetMouseIsDown = false;
+
 var targetState;
 
-var canv = document.getElementById("targetCanvas");
-canv.addEventListener("onmousedown",function(){mouseIsDown = true;});
-canv.addEventListener("onmouseup",resetToggling);
+var canv = document.getElementById("outputCanvas");
+var targetCanvas = document.getElementById("targetCanvas");
+
 var ctx = canv.getContext("2d");
+var targetCTX = targetCanvas.getContext("2d");
 
 changeParams();
-
+targetRepaint();
 
 function changeParams()
 {
@@ -38,6 +43,12 @@ function changeParams()
 	canv.width = cols*cellWidth;
 	canv.height = rows*cellWidth;
 
+	let largeSide = Math.max(canv.width,canv.height);
+	targetCanvas.width = Math.floor(150*canv.width/largeSide);
+	targetCanvas.height = Math.floor(150*canv.height/largeSide);
+	targetCTX.fillStyle = "#000000";
+	targetCTX.strokeRect(0,0,targetCanvas.width,targetCanvas.height);
+
 	constructBoard();
 	drawBoard();
 	drawGrid();
@@ -45,7 +56,7 @@ function changeParams()
 
 
 //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousemove
-function mouseDown(evt)
+function outputMouseDown(evt)
 {
 	targetState = parseInt(document.getElementById("inputtedState").value);
 
@@ -62,7 +73,7 @@ function mouseDown(evt)
 }
 
 // https://www.w3schools.com/jsref/event_onmouseup.asp
-function handleToggle(evt)
+function outputMouseMove(evt)
 {
 	if(!mouseIsDown)
 		return;
@@ -81,9 +92,91 @@ function handleToggle(evt)
 }
 
 // https://www.w3schools.com/jsref/event_onmouseup.asp
-function resetToggling()
+function outputMouseUp()
 {
 	mouseIsDown = false;
+}
+
+function targetMouseDown(evt)
+{
+	targetMouseIsDown = true;
+	let mousePos = getMousePos(targetCanvas,evt);
+	targetCanvasPrevPos = mousePos;
+}
+
+function targetMouseMove(evt)
+{
+	if(!targetMouseIsDown)
+		return;
+
+	let mousePos = getMousePos(targetCanvas,evt);
+
+	let ratioX = mousePos.x / targetCanvas.width;
+	let ratioY = mousePos.y / targetCanvas.height;
+
+	let sectionWidth = zoomRightColBound - zoomLeftColBound;
+	let sectionHeight = zoomBottomRowBound - zoomTopRowBound;
+
+	let outputColChange = Math.ceil(ratioX * cols) - zoomLeftColBound - Math.floor(sectionWidth/2);
+	let outputRowChange = Math.ceil(ratioY * rows) - zoomTopRowBound - Math.floor(sectionHeight/2);
+
+	zoomLeftColBound += outputColChange;
+	zoomRightColBound += outputColChange;
+	zoomTopRowBound += outputRowChange;
+	zoomBottomRowBound += outputRowChange;
+
+	if(zoomLeftColBound < 0)
+	{
+		zoomRightColBound += (-zoomLeftColBound);
+		zoomLeftColBound = 0;
+	}
+	else if(zoomRightColBound > cols-1)
+	{
+		zoomLeftColBound -= zoomRightColBound - (cols-1);
+		zoomRightColBound = cols - 1;
+	}
+
+	if(zoomTopRowBound < 0)
+	{
+		zoomBottomRowBound += (-zoomTopRowBound);
+		zoomTopRowBound = 0;
+	}
+	else if(zoomBottomRowBound > rows-1)
+	{
+		zoomTopRowBound -= zoomBottomRowBound - (rows-1);
+		zoomBottomRowBound = rows-1;
+	}
+
+	targetCanvasPrevPos = mousePos;
+
+	drawBoard();
+	drawGrid();
+	targetRepaint();
+}
+
+function targetMouseUp(evt)
+{
+	targetMouseIsDown = false;
+	let targetCanvasPrevPos = null;
+}
+
+function targetRepaint()
+{
+	targetCTX.fillStyle = "#777777";
+	targetCTX.fillRect(0,0,targetCanvas.width,targetCanvas.height);
+
+	let sectionWidthRatio = (zoomRightColBound - zoomLeftColBound + 1) / cols;
+	let sectionHeightRatio = (zoomBottomRowBound - zoomTopRowBound + 1) / rows;
+
+	let viewWidth = sectionWidthRatio * targetCanvas.width;
+	let viewHeight = sectionHeightRatio * targetCanvas.height;
+
+	let viewX = 150 * zoomLeftColBound / cols;
+	let viewY = 150 * zoomTopRowBound / rows;
+
+	targetCTX.fillStyle = "#007777";
+	// console.log(viewX + " " + viewY);
+	targetCTX.fillRect(viewX,viewY,viewWidth,viewHeight);
 }
 
 function getMousePos(canvas,evt)
@@ -287,6 +380,7 @@ function recomputeBounds()
 
 	drawBoard();
 	drawGrid();
+	targetRepaint();
 }
 
 
