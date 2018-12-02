@@ -9,7 +9,7 @@
 		<p>How many cols in your grid: <input type="text" id="colInput" value="50"></p>
 		<p>Width of each cell in your grid: <input type="text" id="widthInput" value="10"></p>
 		<p>Color of grid lines: <input type="text" id="gridColorInput" value="#000000"></p>
-		<button onclick="changeParams()">Change Parameters</button>
+		<button onclick="paramClick()">Change Parameters</button>
 		<br><br>
 		<canvas id="outputCanvas" onmousemove="outputMouseMove(event)"
 		onmousedown="outputMouseDown(event)" onmouseup="outputMouseUp()"></canvas>
@@ -19,8 +19,8 @@
 		<p>
 			State: <input type="text" id="inputtedState" value="0"><br>
 			Zoom Level: <span id="zoomDisplay">1.0</p></span>
-		<button onclick="zoomChange(0.25)">Zoom In</button>
-		<button onclick="zoomChange(-0.25)">Zoom Out</button>
+		<button onclick="zoomClick(0.25)">Zoom In</button>
+		<button onclick="zoomClick(-0.25)">Zoom Out</button>
 		<br>
 		<br>
 		<br>

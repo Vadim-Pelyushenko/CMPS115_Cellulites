@@ -24,8 +24,15 @@ var targetCanvas = document.getElementById("targetCanvas");
 var ctx = canv.getContext("2d");
 var targetCTX = targetCanvas.getContext("2d");
 
-changeParams();
-targetRepaint();
+paramClick();
+
+function paramClick()
+{
+	zoomSet(1);
+	changeParams();
+	constructBoard();
+	redrawAll();
+}
 
 function changeParams()
 {
@@ -48,10 +55,13 @@ function changeParams()
 	targetCanvas.height = Math.floor(150*canv.height/largeSide);
 	targetCTX.fillStyle = "#000000";
 	targetCTX.strokeRect(0,0,targetCanvas.width,targetCanvas.height);
+}
 
-	constructBoard();
+function redrawAll()
+{
 	drawBoard();
 	drawGrid();
+	targetRepaint();
 }
 
 
@@ -106,7 +116,7 @@ function targetMouseDown(evt)
 
 function targetMouseMove(evt)
 {
-	if(!targetMouseIsDown)
+	if(!targetMouseIsDown || zoomLevel == 1)
 		return;
 
 	let mousePos = getMousePos(targetCanvas,evt);
@@ -114,44 +124,46 @@ function targetMouseMove(evt)
 	let ratioX = mousePos.x / targetCanvas.width;
 	let ratioY = mousePos.y / targetCanvas.height;
 
-	let sectionWidth = zoomRightColBound - zoomLeftColBound;
-	let sectionHeight = zoomBottomRowBound - zoomTopRowBound;
+	let sectionWidth = zoomRightColBound - zoomLeftColBound + 1;
+	let sectionHeight = zoomBottomRowBound - zoomTopRowBound + 1;
 
-	let outputColChange = Math.ceil(ratioX * cols) - zoomLeftColBound - Math.floor(sectionWidth/2);
-	let outputRowChange = Math.ceil(ratioY * rows) - zoomTopRowBound - Math.floor(sectionHeight/2);
+	let sectionWidthOff = Math.floor(sectionWidth/2);
+	let sectionHeightOff = Math.floor(sectionHeight/2);
+
+	let targetCellWidth = targetCanvas.width/cols;
+
+	let outputColChange;
+	let outputRowChange;
+
+	if(sectionWidth > cols)
+		outputColChange = 0;
+	else if(mousePos.x < sectionWidthOff*targetCellWidth)
+		outputColChange = -zoomLeftColBound;
+	else if(mousePos.x > targetCanvas.width - sectionWidthOff*targetCellWidth)
+		outputColChange = (cols-1) - zoomRightColBound;
+	else
+		outputColChange = Math.ceil(ratioX * cols) - zoomLeftColBound - Math.floor(sectionWidth/2);
+
+	if(sectionHeight > rows)
+		outputRowChange = 0;
+	else if(mousePos.y < sectionHeightOff*targetCellWidth)
+		outputRowChange = -zoomTopRowBound;
+	else if(mousePos.y > targetCanvas.height - sectionHeightOff*targetCellWidth)
+		outputRowChange = (rows-1) - zoomBottomRowBound;
+	else
+		outputRowChange = Math.ceil(ratioY * rows) - zoomTopRowBound - Math.floor(sectionHeight/2);
+
 
 	zoomLeftColBound += outputColChange;
 	zoomRightColBound += outputColChange;
 	zoomTopRowBound += outputRowChange;
 	zoomBottomRowBound += outputRowChange;
 
-	if(zoomLeftColBound < 0)
-	{
-		zoomRightColBound += (-zoomLeftColBound);
-		zoomLeftColBound = 0;
-	}
-	else if(zoomRightColBound > cols-1)
-	{
-		zoomLeftColBound -= zoomRightColBound - (cols-1);
-		zoomRightColBound = cols - 1;
-	}
-
 	if(zoomTopRowBound < 0)
-	{
-		zoomBottomRowBound += (-zoomTopRowBound);
-		zoomTopRowBound = 0;
-	}
-	else if(zoomBottomRowBound > rows-1)
-	{
-		zoomTopRowBound -= zoomBottomRowBound - (rows-1);
-		zoomBottomRowBound = rows-1;
-	}
+		debugger;
 
 	targetCanvasPrevPos = mousePos;
-
-	drawBoard();
-	drawGrid();
-	targetRepaint();
+	redrawAll();
 }
 
 function targetMouseUp(evt)
@@ -171,8 +183,10 @@ function targetRepaint()
 	let viewWidth = sectionWidthRatio * targetCanvas.width;
 	let viewHeight = sectionHeightRatio * targetCanvas.height;
 
-	let viewX = 150 * zoomLeftColBound / cols;
-	let viewY = 150 * zoomTopRowBound / rows;
+	let viewX = targetCanvas.width * zoomLeftColBound / cols;
+	let viewY = targetCanvas.height * zoomTopRowBound / rows;
+
+	// viewY + viewWidth > targetCanvas.height
 
 	targetCTX.fillStyle = "#007777";
 	// console.log(viewX + " " + viewY);
@@ -236,6 +250,8 @@ function constructBoard()
 
 function drawBoard()
 {
+	// Canvas resizing
+
 	ctx.fillStyle = "#777777";
 	ctx.fillRect(0,0,canv.width,canv.width);
 
@@ -244,9 +260,6 @@ function drawBoard()
 	let rowEnd = Math.min(zoomBottomRowBound,rows-1);
 	let colEnd = Math.min(zoomRightColBound,cols-1);
 	let cWidth = zoomCellWidth;
-
-	// canv.width = cWidth * (rowEnd - rowBegin + 1);
-	// canv.height = cWidth * (colEnd - colBegin + 1);
 
 	for(let r = rowBegin; r <= rowEnd; r++)
 	{
@@ -302,6 +315,12 @@ function printGrid()
 
 // --------------------------------------------------------------
 
+function zoomClick(amount)
+{
+	zoomChange(amount);
+	redrawAll();
+}
+
 function zoomChange(amount)
 {
 	console.log("changing zoom");
@@ -313,7 +332,22 @@ function zoomChange(amount)
 		return;
 	}
 	console.log("new zoom level: " + zoomLevel);
+	document.getElementById("zoomDisplay").innerHTML = zoomLevel;
 
+	recomputeBounds();
+}
+
+function zoomSet(amount)
+{
+	console.log("changing zoom");
+	if(amount < 1)
+	{
+		console.log("Can't zoom out further than 1");
+		return;
+	}
+
+	zoomLevel = amount;
+	console.log("new zoom level: " + zoomLevel);
 	document.getElementById("zoomDisplay").innerHTML = zoomLevel;
 
 	recomputeBounds();
@@ -321,6 +355,9 @@ function zoomChange(amount)
 
 function recomputeBounds()
 {
+	canv.width = cellWidth * cols;
+	canv.height = cellWidth * rows;
+
 	let midC = (zoomLeftColBound + zoomRightColBound) / 2;
 	let midR = (zoomTopRowBound + zoomBottomRowBound) / 2;
 	let zoomOffset = Math.floor(Math.max(rows,cols)/zoomLevel/2);
@@ -339,11 +376,7 @@ function recomputeBounds()
 	let sectionLength = Math.max(sectionWidth,sectionHeight);
 	let normalLength = Math.max(rows,cols);
 
-	console.log(normalLength/sectionLength);
 	zoomCellWidth = cellWidth*(normalLength/sectionLength);
-	console.log("NOTE: " + zoomCellWidth);
-
-
 
 	console.log("New bounds before correction: ");
 	console.log("Col: " + zoomLeftColBound + ", " + zoomRightColBound);
@@ -373,14 +406,33 @@ function recomputeBounds()
 		zoomBottomRowBound -= shift;
 	}
 
+
+
+	sectionWidth = Math.min(zoomRightColBound,cols-1) - zoomLeftColBound + 1;
+	sectionHeight = Math.min(zoomBottomRowBound,rows-1) - zoomTopRowBound + 1;
+
+	console.log("Section Width: " + sectionWidth);
+	console.log("Section Height: " + sectionHeight);
+	console.log("Zoom Width: " + zoomCellWidth);
+	// Properly resizing the canvas
+	if(cols > rows && sectionHeight * zoomCellWidth > canv.height)
+	{
+		console.log("canvas width resized");
+
+		zoomCellWidth = canv.height / sectionHeight;
+		canv.width = zoomCellWidth * sectionWidth;
+	}
+	else if(rows > cols && sectionWidth * zoomCellWidth > canv.width)
+	{
+		console.log("canvas height resized");
+		zoomCellWidth = canv.width / sectionWidth;
+		canv.height = zoomCellWidth * sectionHeight;
+	}
+
 	console.log("New bounds after correction:");
 	console.log("Col: " + zoomLeftColBound + ", " + zoomRightColBound);
 	console.log("Row: " + zoomTopRowBound + ", " + zoomBottomRowBound);
 	console.log("\n");
-
-	drawBoard();
-	drawGrid();
-	targetRepaint();
 }
 
 
