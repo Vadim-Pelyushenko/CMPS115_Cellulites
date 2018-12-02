@@ -172,7 +172,7 @@ function portion_1()
     part1 += "function()\n";
     part1 += "{\n";
     part1 += "\tlet ctx = this.context;\n";
-    part1 += "\tlet cellWidth = this.cellWidth;\n";
+    part1 += "\tlet cellWidth = this.zoom_controller.zoomCellWidth;\n";
     part1 += "\tlet grid = this.board.grid;\n\n";
     part1 += "\tlet zoom = this.zoom_controller;\n";
     part1 += "\tlet rowBegin = zoom.topRowBound;\n";
@@ -203,7 +203,7 @@ function portion_3()
 {
     let part3 = "";
 
-    part3 += "\t\t\tctx.fillRect(c*cellWidth, r*cellWidth, cellWidth, cellWidth);\n";
+    part3 += "\t\t\tctx.fillRect((c-colBegin)*cellWidth, (r-rowBegin)*cellWidth, cellWidth, cellWidth);\n";
     part3 += "\t\t}\n";
     part3 += "\t}\n";
     part3 += "}\n";

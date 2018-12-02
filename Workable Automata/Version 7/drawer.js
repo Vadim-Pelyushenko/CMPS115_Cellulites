@@ -60,14 +60,18 @@ class Drawer
 		this.cellWidth = cellWidth;
 
 		// Creates the canvas and puts it on the document
-		this.canv = document.createElement("canvas");
-		this.canv.id = "outputCanvas";
-		let outputTag = document.getElementById("output");
-		outputTag.innerHTML = "";
-		outputTag.appendChild(this.canv);
+		this.canv = document.getElementById("outputCanvas");
+		if(this.canv === null)
+		{
+			this.canv = document.createElement("canvas");
+			this.canv.setAttribute("id", "outputCanvas");	
+			let outputTag = document.getElementById("output");
+			outputTag.innerHTML = "";
+			outputTag.appendChild(this.canv);
+		}
 
-		this.canv.width = board.rows*cellWidth;
-		this.canv.height = board.cols*cellWidth;
+		this.canv.width = board.cols*cellWidth;
+		this.canv.height = board.rows*cellWidth;
 		this.context = this.canv.getContext("2d");
 		this.context.fillStyle = "#000000";
 		this.context.fillRect(0,0,this.canv.width,this.canv.height);
@@ -297,10 +301,15 @@ class Zoom_Controller
 	constructor(dra)
 	{
 		this.drawer = dra;
-		this.targetCanvas = document.createElement("canvas");
-		this.targetCanvas.id = "targetCanvas";
-		let outputTag = document.getElementById("output");
-		outputTag.appendChild(this.targetCanvas);
+
+		this.targetCanvas = document.getElementById("targetCanvas");
+		if(this.targetCanvas === null)
+		{
+			this.targetCanvas = document.createElement("canvas");
+			this.targetCanvas.setAttribute("id", "targetCanvas");
+			let outputTag = document.getElementById("output");
+			outputTag.appendChild(this.targetCanvas);
+		}
 
 		this.targetCTX = this.targetCanvas.getContext("2d");
 		this.revalidate();
@@ -336,13 +345,20 @@ class Zoom_Controller
 		let sectWidthRatio = (this.rightColBound - this.leftColBound + 1) / dra.board.cols;
 		let sectHeightRatio = (this.bottomRowBound - this.topRowBound + 1) / dra.board.rows;
 
-		let viewWidth = sectHeightRatio * targCanv.width;
+		let viewWidth = sectWidthRatio * targCanv.width;
 		let viewHeight = sectHeightRatio * targCanv.height;
 
 		let viewX = targCanv.width * this.leftColBound / dra.board.cols;
-		let viewY = targCanv.height * this.topRowBound / dra.board.cols;
+		let viewY = targCanv.height * this.topRowBound / dra.board.rows;
 
 		targCTX.fillStyle = "#007777";
+		console.log("BOUNDS:");
+		console.log("ROW: " + this.topRowBound + ", " + this.bottomRowBound);
+		console.log("COL: " + this.leftColBound + ", " + this.rightColBound);
+		console.log("VIEW WIDTH: " + viewWidth);
+		console.log("VIEW HEIGHT: " + viewHeight);
+		console.log("VIEW COORDS: Row " + viewX + ", Col " + viewY);
+		console.log(viewX + " " + viewY + " " + viewWidth + " " + viewHeight);
 		targCTX.fillRect(viewX,viewY,viewWidth,viewHeight);
 	}
 
@@ -374,13 +390,17 @@ class Zoom_Controller
 		let targCanvCellWid = targCanv.width / cols;
 
 		if(sectWidth > cols)
+		{
 			colChange = 0;
+			console.log(1);
+		}
 		else if(mousePos.x < sectWidthOff*targCanvCellWid)
 			colChange = -this.leftColBound;
 		else if(mousePos.x > targCanv.width - sectWidthOff*targCanvCellWid)
 			colChange = (cols-1) - this.rightColBound
 		else
-			colChange = Math.ceil(ratioX * rows) - this.leftColBound - Math.floor(sectHeight/2);
+			colChange = Math.ceil(ratioX * cols) - this.leftColBound - Math.floor(sectHeight/2);
+
 
 		if(sectHeight > rows)
 			rowChange = 0;
@@ -397,6 +417,13 @@ class Zoom_Controller
 		this.rightColBound += colChange;
 		this.topRowBound += rowChange;
 		this.bottomRowBound += rowChange;
+
+		// if(this.leftColBound < 0)
+		// {
+		// 	console.log("MOUSE X: " + mousePos.x);
+		// 	console.log("PREV LEFT COL: " + (this.leftColBound - colChange));
+		// 	debugger;
+		// }
 
 		if(colChange != 0 || rowChange != 0)
 			this.drawer.redrawAll();
