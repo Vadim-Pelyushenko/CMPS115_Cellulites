@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Grid Stuff</title>
+		<script type="text/javascript" src="drawer.js"></script>
 		<script type="text/javascript" src="script.js" defer></script>
 	</head>
 	<body>
@@ -9,13 +10,10 @@
 		<p>How many cols in your grid: <input type="text" id="colInput" value="50"></p>
 		<p>Width of each cell in your grid: <input type="text" id="widthInput" value="10"></p>
 		<p>Color of grid lines: <input type="text" id="gridColorInput" value="#000000"></p>
-		<button onclick="paramClick()">Change Parameters</button>
+		<button onclick="changeParams()">Change Parameters</button>
 		<br><br>
-		<canvas id="outputCanvas" onmousemove="outputMouseMove(event)"
-		onmousedown="outputMouseDown(event)" onmouseup="outputMouseUp()"></canvas>
-
-		<canvas id="targetCanvas" onmousemove="targetMouseMove(event)"
-		onmousedown="targetMouseDown(event)" onmouseup="targetMouseUp(event)"></canvas>
+		<canvas id="outputCanvas"></canvas>
+		<canvas id="targetCanvas"></canvas>
 		<p>
 			State: <input type="text" id="inputtedState" value="0"><br>
 			Zoom Level: <span id="zoomDisplay">1.0</p></span>
