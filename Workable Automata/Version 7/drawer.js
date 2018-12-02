@@ -134,6 +134,7 @@ class Drawer
 			console.log("Drawing has been stopped");
 			clearInterval(this.drawLoop);
 			this.isRunning = false;
+			this.drawBoard();
 		}
 	}
 
@@ -242,9 +243,9 @@ class Drawer
 		let coords = this.zoom_controller.computeCoords(evt);
 		let cell = this.board.grid[coords.row][coords.col];
 
-		let len = Math.min(cell.state.length,targetState.length);
+		let len = Math.min(cell.state.length,this.targetState.length);
 		for(let k = 0; k < len; k++)
-			cell.state[k] = targetState[k];
+			cell.state[k] = this.targetState[k];
 
 		this.drawBoard();
 		this.drawGridLines();

@@ -133,6 +133,8 @@ function createDrawer()
 		drawer = new Drawer(board,cellWidth);
 		setDrawingEventListeners();
 		drawer.redrawAll();
+
+		document.getElementById("stateField").style.display = "";
 	}
 }
 
