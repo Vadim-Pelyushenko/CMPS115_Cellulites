@@ -5,19 +5,20 @@ import {
     Tabs, Tab
     // Form, FormGroup, ControlLabel, FormControl
 } from "react-bootstrap";
-// import {
-//   saveTextAsFile,
-//   loadFileAsText
-// } from './CodeBox.js'
-import {
-  saveTextAsFile,
-  loadFileAsText
-} from './CodeBox'
-import {
-  runSimulation,
-  stopSimulation,
-  resumeSimulation
-} from './input_controller'
+
+import * as box from './CodeBox.js';
+import * as input from './input_controller.js'
+
+
+
+// <script type="text/javascript" src="src/board.js"></script>
+//     <script type="text/javascript" src="src/drawer.js"></script>
+//     <script type="text/javascript" src="src/cell.js"></script>
+//     <script type="text/javascript" src="src/input_controller.js"></script>
+//     <script type="text/javascript" src="src/site_controller.js"></script>
+//     <script type="text/javascript" src="src/game_of_life.js"></script>
+//     <script type="text/javascript" src="src/rule30.js"></script>
+
 
 class Home extends Component {
   render() {
@@ -34,13 +35,13 @@ class Home extends Component {
               <div id = "output"></div>
               <Row><center>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='success' onClick={runSimulation}> Start/Reset </Button>
+                  <Button bsStyle='success' onClick={input.runSimulation}> Start/Reset </Button>
                 </Col>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='danger' onClick={stopSimulation}> Stop </Button>
+                  <Button bsStyle='danger' onClick={input.stopSimulation}> Stop </Button>
                 </Col>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='warning' onClick={resumeSimulation}> Resume </Button>
+                  <Button bsStyle='warning' onClick={input.resumeSimulation}> Resume </Button>
                 </Col>
               </center></Row>
             </Col>
@@ -82,11 +83,11 @@ class Home extends Component {
             </tr>
             <td>Filename to Save As:</td>
             <tr><td><input id="inputFileNameToSaveAs" /></td></tr>
-            <Button bsStyle='info' bsSize="xsmall" onClick={saveTextAsFile}> Save Text to File </Button>
+            <Button bsStyle='info' bsSize="xsmall" onClick={box.saveTextAsFile}> Save Text to File </Button>
             <tr></tr>
             <td>Select a File to Load:</td>
             <tr><td><input type="file" id="fileToLoad" /></td></tr>
-            <Button bsStyle='info' bsSize="xsmall" onClick={loadFileAsText}> Load Selected File </Button>
+            <Button bsStyle='info' bsSize="xsmall" onClick={box.loadFileAsText}> Load Selected File </Button>
           </table>
         </center></div>
       )
