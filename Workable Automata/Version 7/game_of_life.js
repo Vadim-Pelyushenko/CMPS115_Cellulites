@@ -77,25 +77,6 @@ function gameOfLifeFunctionGroup4()
 	return result;
 }
 
-function gameOfLifeFunctionGroup5()
-{
-	let result = new Function_Group("Color changing life",5);
-
-	result.initBoardName = "GOL - Random";
-	result.initBoardRaw = gameOfLifeRawInit();
-	result.initBoardForm = "compute-each";
-	result.dataWidth = "1";
-
-	result.updateCellName = "GOL - Aging update";
-	result.updateCellRaw = gameOfLifeAgingUpdate();
-
-	result.drawBoardName = "GOL - Draw Board Mapped";
-	result.drawBoardRaw = gameOfLifeDrawComputedAge();
-	result.drawBoardForm = "compute-color";
-
-	return result;
-}
-
 function gameOfLifeRawInit()
 {
 	let rawInit = "";
@@ -138,37 +119,6 @@ function gameOfLifeRawUpdate()
 	return rawUpdate;
 }
 
-function gameOfLifeAgingUpdate()
-{
-	let rawUpdate = "";
-	rawUpdate += "let >local< = $(NW,N,NE,W,E,SW,S,SE) ~ [0];\n\n";
-	rawUpdate += "let count = 0;\n";
-	rawUpdate += "for(let k = 0; k < local.length; k++)\n";
-	rawUpdate += "\tif(local[k].state[0] > 0)\n";
-	rawUpdate += "\t\tcount++;\n\n";
-	rawUpdate += "let nextState;\n";
-	rawUpdate += "if(cell.state[0] <= 0)\n";
-	rawUpdate += "{\n";
-	rawUpdate += "\tif(count == 3)\n";
-	rawUpdate += "\t\tnextState = 1;\n";
-	rawUpdate += "\telse\n";
-	rawUpdate += "\t{\n";
-	rawUpdate += "\t\tnextState = 0;\n";
-	// rawUpdate += "\t\tnextState = Math.max(cell.state[0] - 1,-15);\n";
-	rawUpdate += "\t}\n";
-	rawUpdate += "}\n";
-	rawUpdate += "else\n";
-	rawUpdate += "{\n";
-	rawUpdate += "\tif(count < 2 || count > 3)\n";
-	rawUpdate += "\t\tnextState = 0;\n";
-	rawUpdate += "\telse\n";
-	rawUpdate += "\t\tnextState = Math.min(cell.state[0] + 1, 7);\n";
-	rawUpdate += "}\n";
-	rawUpdate += "cell.setFutureState(0,nextState);";
-
-	return rawUpdate;
-}
-
 function gameOfLifeRawDrawBoardMapped()
 {
 	let rawDraw = "";
@@ -187,22 +137,6 @@ function gameOfLifeRawDrawBoardComputed()
 	rawDraw += "\tcompute_color = 0x000000;\n";
 	rawDraw += "else\n";
 	rawDraw += "\tcompute_color = 0xFFFFFF;"
-
-	return rawDraw;
-}
-
-function gameOfLifeDrawComputedAge()
-{
-	let rawDraw = "";
-
-	rawDraw += "if(state[0] > 0)\n";
-	rawDraw += "{\n";
-	rawDraw += "\tcompute_color = (0x22 * state[0]) << 16;\n";
-	rawDraw += "}\n";
-	rawDraw += "else\n";
-	rawDraw += "{\n";
-	rawDraw += "\tcompute_color = 0;\n";
-	rawDraw += "}\n";
 
 	return rawDraw;
 }
@@ -259,7 +193,6 @@ function gameOfLifeInitBoard()
 			result[r][c] = temp;
 		}
 	}
-
 	this.grid = result;
 }
 
