@@ -3,7 +3,6 @@ var cols;
 var cellWidth;
 var gridColor;
 var grid;
-var editGridStatus;
 
 var zoomLevel = 1.0;
 var zoomCellWidth;
@@ -13,6 +12,7 @@ var zoomTopRowBound;
 var zoomBottomRowBound;
 
 var mouseIsDown = false;
+var targetState;
 
 var canv = document.getElementById("targetCanvas");
 canv.addEventListener("onmousedown",function(){mouseIsDown = true;});
@@ -47,6 +47,8 @@ function changeParams()
 //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousemove
 function mouseDown(evt)
 {
+	targetState = parseInt(document.getElementById("inputtedState").value);
+
 	let mousePos = getMousePos(canv,evt);
 	console.log("Coordinates: " + mousePos.x + ", " + mousePos.y);
 	let col = zoomLeftColBound + Math.floor(mousePos.x / zoomCellWidth);
@@ -54,8 +56,7 @@ function mouseDown(evt)
 	console.log("Row: " + row + ", Col: " + col);
 
 	mouseIsDown = true;
-	grid[row][col] = 2 - grid[row][col];
-	editGridStatus[row][col] = 1;
+	grid[row][col] = targetState;
 	drawBoard();
 	drawGrid();
 }
@@ -72,12 +73,8 @@ function handleToggle(evt)
 	let row = zoomTopRowBound + Math.floor(mousePos.y / zoomCellWidth);
 	console.log("Row: " + row + ", Col: " + col);
 
-	if(editGridStatus[row][col] == 1)
-		return;
-
-	grid[row][col] = 2 - grid[row][col];
+	grid[row][col] = targetState;
 	console.log("toggled");
-	editGridStatus[row][col] = 1;
 
 	drawBoard();
 	drawGrid();
@@ -86,10 +83,6 @@ function handleToggle(evt)
 // https://www.w3schools.com/jsref/event_onmouseup.asp
 function resetToggling()
 {
-	for(let r = 0; r < editGridStatus.length; r++)
-		for(let c = 0; c < editGridStatus[r].length; c++)
-			editGridStatus[r][c] = 0;
-
 	mouseIsDown = false;
 }
 
@@ -133,17 +126,14 @@ function drawGrid()
 function constructBoard()
 {
 	grid = new Array(rows);
-	editGridStatus = new Array(rows);
 
 	for(let k = 0; k < rows; k++)
 	{
 		grid[k] = new Array(cols);
-		editGridStatus[k] = new Array(cols);
 
 		for(let c = 0; c < cols; c++)
 		{
 			grid[k][c] = 0;
-			editGridStatus[k][c] = 0;
 			// grid[k][c] = Math.floor(Math.random()*2);
 		}
 	}

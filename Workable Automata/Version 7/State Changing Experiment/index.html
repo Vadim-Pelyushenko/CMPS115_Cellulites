@@ -13,7 +13,9 @@
 		<br><br>
 		<canvas id="targetCanvas" onmousemove="handleToggle(event)"
 		onmousedown="mouseDown(event)" onmouseup="resetToggling()"></canvas>
-		<p>Zoom Level: <span id="zoomDisplay">1.0</p></span>
+		<p>
+			State: <input type="text" id="inputtedState" value="0"><br>
+			Zoom Level: <span id="zoomDisplay">1.0</p></span>
 		<button onclick="zoomChange(0.25)">Zoom In</button>
 		<button onclick="zoomChange(-0.25)">Zoom Out</button>
 		<br>
