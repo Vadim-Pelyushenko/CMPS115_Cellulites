@@ -90,13 +90,15 @@
 			<textarea rows="20" cols="100" id="functionInputArea" 
 			placeholder="Write your function code here, just code, no header needed"></textarea>
 			<br>
-			<input type="text" id="dataWidthInput" value="1" style="display: none">
 			<span id="formPromptAndInput" style="display: none;">
 				Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px"><br>
 				<!-- THE FORM TYPE INPUT CORRECTLY DISPLAYS WHAT IS ALREADY STORED RIGHT NOW
 				     BUT CAN'T ACTUALLY BE CHANGED YET, ADD CODE TO DO THIS -->
 			</span>
-
+			<span id="dataWidthField" style="display: none">
+				Data Width: <input type="text" id="dataWidthInput" value="1" size="1">
+				<br>
+			</span>
 			<button id="compileEverything" onclick="compile_all()">Compile All</button>
 			<button id="newAuto" onclick="new_automaton()">New Automaton</button>
 		</div>

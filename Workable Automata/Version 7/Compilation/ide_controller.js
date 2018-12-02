@@ -135,22 +135,27 @@ class IDE_Controller
 		this.selected_function = func;
 		functionEditing.style.display = ""; // unhide the function editing part
 
+		let dataWidthField = document.getElementById("dataWidthField");
 		if(func === "initBoard")
 		{
 			this.loadInitBoardFromSelected();
 			formField.style.display = "";
 			formInput.value = this.simulating_group.initBoardForm;
+
+			dataWidthField.style.display = "";
 		}
 		else if(func === "updateCell")
 		{
 			this.loadUpdateCellFromSelected();
 			formField.style.display = "none";
+			dataWidthField.style.display = "none";
 		}
 		else if(func === "drawBoard")
 		{
 			this.loadDrawBoardFromSelected();
 			formField.style.display = "";
 			formInput.value = this.simulating_group.drawBoardForm;
+			dataWidthField.style.display = "none";
 		}
 	}
 
@@ -170,7 +175,7 @@ class IDE_Controller
 
 		if(this.selected_function === "initBoard")
 		{
-			sim.dataWidth = document.getElementById("dataWidthInput").value;
+			sim.dataWidth = parseInt(document.getElementById("dataWidthInput").value) || 1;
 			sim.initBoardName = func_name;
 			sim.initBoardRaw = func_raw;
 
@@ -211,6 +216,7 @@ class IDE_Controller
 		{
 			functionArea.value = this.simulating_group.initBoardRaw;
 			functionNameInput.value = this.simulating_group.initBoardName;
+			document.getElementById("dataWidthInput").value = this.simulating_group.dataWidth;
 		}
 		else
 		{
@@ -294,6 +300,7 @@ class IDE_Controller
 
 	compile_initialization_function(rawCode,form,dataWidth)
 	{
+		console.log("DataWidth Received: " + dataWidth);
 		if(form === "compute-each")
 			return compileInit(rawCode,dataWidth);
 		else if(form === "literal")
@@ -402,7 +409,7 @@ class Function_Group
 		this.initBoardCompiled = null;
 		this.initBoardState = null;
 		this.initBoardForm = "compute-each"; // indirectly changed by user
-		this.dataWidth = null;
+		this.dataWidth = 1;
 
 		this.updateCellName = null;
 		this.updateCellRaw = "";
