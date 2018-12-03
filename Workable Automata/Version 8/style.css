@@ -10,8 +10,10 @@
   max-width: 100%;
 }
 
-
-
+button
+{
+  border-radius: 4px;
+}
 
 /*Specific stuff of the formatting of the parts*/
 /*THE BACKGROUND COLORS ARE FOR TELLING WHAT'S GOING ON WITH MARGINS, PADDING ETC*/
@@ -24,7 +26,7 @@
 
 #output
 {
-	background-color: #AACCFF;
+	background-color: #FFCC99;
   border-radius: 25px;
 	height: 600px; 
 	margin-left: 3%;
@@ -35,7 +37,7 @@
 	background-color: #CCFFCC;
   border-radius: 25px;
 	margin-left: 3%; 
-	margin-right: 1%;"
+	/*margin-right: 1%;*/
 }
 
 #row2
@@ -56,7 +58,7 @@
 	height: 50px;
 	/*background-color: #440044;*/
 	margin-left: 3%;
-	margin-right: 1%;
+	/*margin-right: 1%;*/
 	margin-top: 1%;
 }
 
