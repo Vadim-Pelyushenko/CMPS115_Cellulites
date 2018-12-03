@@ -143,25 +143,28 @@ class IDE_Controller
 			formInput.value = this.simulating_group.initBoardForm;
 
 			dataWidthField.style.display = "";
-			swapOutTab('functionEditingPart',true,true);
+			// swapOutTab('functionEditingPart',true,true);
 		}
 		else if(func === "updateCell")
 		{
 			this.loadUpdateCellFromSelected();
 			formField.style.display = "none";
 			dataWidthField.style.display = "none";
-			swapOutTab('functionEditingPart',false,false);
+			// swapOutTab('functionEditingPart',false,false);
 		}
 		else if(func === "drawBoard")
 		{
 			this.loadDrawBoardFromSelected();
 			formField.style.display = "";
+			console.log(this.simulating_group.drawBoardForm);
 			formInput.value = this.simulating_group.drawBoardForm;
 			dataWidthField.style.display = "none";
-			swapOutTab('functionEditingPart',true,false);
+			// swapOutTab('functionEditingPart',true,false);
 		}
-
-
+		else
+		{
+			console.log("INVALID FUNCTION BEING SWITCHED TO!!!");
+		}
 	}
 
 	saveCurrentProgress()

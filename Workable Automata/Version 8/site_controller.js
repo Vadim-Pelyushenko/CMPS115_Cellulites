@@ -337,7 +337,7 @@ function loadFileAsText()
 
 // WEBSITE TABS
 
-function swapOutTab(tabID,showFormType,showDataWidth)
+function swapOutTab(tabID,showFormType,showDataWidth,funcType)
 {
 	document.getElementById(currentTabId).style.display = "none";
 	currentTabId = tabID;
@@ -357,4 +357,11 @@ function swapOutTab(tabID,showFormType,showDataWidth)
 		dataWidthField.style.display = "";
 	else
 		dataWidthField.style.display = "none";
+
+	if(funcType === 0)
+		ide_controller.change_function_editing("initBoard");
+	else if(funcType === 1)
+		ide_controller.change_function_editing("updateCell");
+	else if(funcType === 2)
+		ide_controller.change_function_editing("drawBoard");
 }
