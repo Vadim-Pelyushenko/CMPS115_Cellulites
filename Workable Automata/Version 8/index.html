@@ -77,7 +77,7 @@
                                 <p id="updateFuncDisplay">UpdateCell Function: </p>
                                 <p id="drawFuncDisplay">DrawBoard Function: </p>
                                 <br>
-                                <span id="stateField"><br>Set State: <input type="text" id="inputtedState" size="5" value="[0]"></span>
+                                <span id="stateField"><br>Set State: <input type="text" id="inputtedState" size="5" value="[0]" spellcheck="false"></span>
                             </td>
                             <td style="width: 55%;">
                                  <div id="viewControl" align="center">
@@ -97,23 +97,23 @@
                 <div id="parameters" style="display: none;">
                     <p>
                         <span id="autoNamePrompt">Name your Cellular Automaton: </span>
-                        <input type="text" id="automatonName"
+                        <input type="text" id="automatonName" spellcheck="false"
                         oninput="automatonInputNameChanged()">
                     </p>
                     <p>
-                        Set #Rows: <input type="text" id="quantityRowInput" value="100">
+                        Set #Rows: <input type="text" id="quantityRowInput" value="100" spellcheck="false">
                     </p>
                     <p>
-                        Set #Cols: <input type="text" id="quantityColInput" value="100">
+                        Set #Cols: <input type="text" id="quantityColInput" value="100" spellcheck="false">
                     </p>
                     <p>
-                        Set CellWidth: <input type="text" id="cellWidthInput" value="5">
+                        Set CellWidth: <input type="text" id="cellWidthInput" value="5" spellcheck="false">
                     </p>
                     <button type="button" onclick="setParameters()">Set Parameters</button>
                     <br>
                     <br>
                     <p>
-                        Set Delay: <input type="text" id="delayInput" value="100">
+                        Set Delay: <input type="text" id="delayInput" value="100" spellcheck="false">
                     </p>
                     <button id="setDelay" onclick="setDelay()">Set Delay</button>
                 </div>
@@ -121,9 +121,9 @@
                 <div id="functionEditingPart" style="display: none;" align="center">
                     <p>
                         Name your function:
-                        <input id="functionNameInput" type="text" cols="25"></input>
+                        <input id="functionNameInput" type="text" cols="25" spellcheck="false"></input>
                     </p>
-                    <textarea rows="23" cols="80" id="functionInputArea" 
+                    <textarea rows="23" cols="80" id="functionInputArea" spellcheck="false"
                         placeholder="Write your function code here, just code, no header needed"
                         style="resize: none;"></textarea>
                     <br>
@@ -169,7 +169,7 @@
 
                 <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
                 <span id="formTypeField" style="display: none;">
-                    Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px"><br>
+                    Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px" spellcheck="false"><br>
                 </span>
                 <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
 
@@ -177,7 +177,7 @@
 
                 <!-- THE DATAWIDTH FOR INITIALIZATION -->
                 <span id="dataWidthField" style="display: none;">
-                    Data Width: <input type="text" id="dataWidthInput" value="1" size="1">
+                    Data Width: <input type="text" id="dataWidthInput" value="1" size="1" spellcheck="false">
                     <br>
                 </span>
                 <!-- THE DATAWIDTH FOR INITIALIZATION -->
