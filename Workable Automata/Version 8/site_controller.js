@@ -245,6 +245,7 @@ function new_automaton()
 	console.log("New Automaton clicked");
 	ide_controller.set_simulating(null);
 	document.getElementById("automatonName").value = "";
+	document.getElementById("automatonDisplay").innerHTML = "";
 }
 
 function createInitInput(numRows,numCols,numData)
