@@ -36,6 +36,26 @@ button:hover {background-color: #3e8e41}
   border-radius: 4px;
 }
 
+p
+{
+  font-size: 22px;
+}
+
+span
+{
+  font-size: 22px;
+}
+
+input
+{
+  font-size: 22px;
+}
+
+li a
+{
+  font-size: 19px;
+}
+
 /*Specific stuff of the formatting of the parts*/
 /*THE BACKGROUND COLORS ARE FOR TELLING WHAT'S GOING ON WITH MARGINS, PADDING ETC*/
 /*IF YOU WANT TO SEE THE SITE WITHOUT EM, JUST COMMENT EM OUT*/
