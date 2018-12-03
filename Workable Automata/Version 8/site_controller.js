@@ -339,6 +339,7 @@ function loadFileAsText()
 
 function swapOutTab(tabID,showFormType,showDataWidth,funcType)
 {
+	ide_controller.saveCurrentProgress();
 	document.getElementById(currentTabId).style.display = "none";
 	currentTabId = tabID;
 	document.getElementById(currentTabId).style.display = "";
