@@ -358,6 +358,7 @@ function swapOutTab(tabID,showFormType,showDataWidth,funcType)
 	else
 		dataWidthField.style.display = "none";
 
+	
 	if(funcType === 0)
 		ide_controller.change_function_editing("initBoard");
 	else if(funcType === 1)

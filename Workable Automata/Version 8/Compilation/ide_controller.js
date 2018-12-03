@@ -60,6 +60,8 @@ class IDE_Controller
 			return false;
 		}
 
+		swapOutTab('functionEditingPart',false,false,1);
+
 		this.set_simulating(this.func_groups[ind]);
 		return true;
 	}
