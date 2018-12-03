@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="game_of_life.js"></script>
+    <script type="text/javascript" src="automatas.js"></script>
+
+    <script type="text/javascript" src="board.js"></script>
+    <script type="text/javascript" src="cell.js"></script>
+    <script type="text/javascript" src="drawer.js"></script>
+    <script type="text/javascript" src="input_controller.js"></script>
+
+    <script type="text/javascript" src="Compilation/ide_controller.js"></script>
+    <script type="text/javascript" src="Compilation/initialize_board_compiler.js"></script>
+    <script type="text/javascript" src="Compilation/update_cell_compiler.js"></script>
+    <script type="text/javascript" src="Compilation/draw_board_compiler.js"></script>
+    <script type="text/javascript" src="site_controller.js" defer></script>
+</head>
+
+<body>
+    <div>
+        <!-- FIRST ROW -->
+        <div id="row1" class="row" style="background-color: black">
+            <div id="output" class="col">
+                This is where the Simulator will go
+            </div>
+            <div class="col" id="col2">
+
+                <button onclick="swapOutTab('automataInfo',false,false)">Info</button>
+                <button onclick="swapOutTab('functionEditingPart',true,true)">Init Func</button>
+                <button onclick="swapOutTab('functionEditingPart',false,false)">Update Func</button>
+                <button onclick="swapOutTab('functionEditingPart',true,false)">Draw Func</button>
+                <button onclick="swapOutTab('presetSelection',false,false)">Presets</button>
+                <button onclick="swapOutTab('storeOrLoad',false,false)">Save/Store Code</button>
+                <br>
+                <br>
+
+                <div id="automataInfo">
+                    <p id="rowsDisplay">#Rows: </p>
+                    <p id="colsDisplay">#Cols: </p>
+                    <p id="cellWidthDisplay">CellWidth: </p>
+                    <p id="delayDisplay">Delay(Milliseconds): </p>
+                    <br>
+                    <p id="initFuncDisplay">InitBoard Function: </p>
+                    <p id="updateFuncDisplay">UpdateCell Function: </p>
+                    <p id="drawFuncDisplay">DrawBoard Function: </p>
+                    <!-- THERE WILL BE THE VIEWING THING HERE -->
+                </div>
+
+                <div id="functionEditingPart" style="display: none;">
+                    <textarea rows="23" cols="80" id="functionInputArea" 
+                        placeholder="Write your function code here, just code, no header needed"
+                        style="resize: none;"></textarea>
+                    <br>
+                </div>
+
+                <div id="presetSelection" style="display: none;">
+                    <select id="autoList" onchange="preset_into_editor(this)">
+                        <option value="nothing"></option>
+                        <option value="nothing">Place Holder Option</option>
+                    </select><br><br>
+                </div>
+
+                <div id="storeOrLoad" style="display: none;">
+                    <table>
+                        <tr>
+                            <td>Filename to Save As:</td>
+                            <td><input id="inputFileNameToSaveAs"></td>
+                            <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+                        </tr>
+                        <tr>
+                            <td>Select a File to Load:</td>
+                            <td><input type="file" id="fileToLoad"></td>
+                            <td><button onclick="loadFileAsText()">Load Selected File</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- FIRST ROW -->
+
+        <!-- SECOND ROW -->
+        <div id="row2" class="row">
+            <div id="col3" class="col">
+                <button id="run" onclick="runSimulation()">Start/Reset</button>
+                <button id="stop" onclick="stopSimulation()">Stop</button>
+                <button id="resume" onclick="resumeSimulation()">Resume</button>
+            </div>
+
+            <!-- METADATA STUFF -->
+            <div id="col4" class="col">
+
+                <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
+                <span id="formTypeField" style="display: none;">
+                    Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px"><br>
+                </span>
+                <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
+
+
+
+                <!-- THE DATAWIDTH FOR INITIALIZATION -->
+                <span id="dataWidthField" style="display: none;">
+                    Data Width: <input type="text" id="dataWidthInput" value="1" size="1">
+                    <br>
+                </span>
+                <br>
+                <!-- THE DATAWIDTH FOR INITIALIZATION -->
+
+                <button id="compileEverything" onclick="compile_all()">Compile All</button>
+                <button id="newAuto" onclick="new_automaton()">New Automaton</button>
+            </div>
+            <!-- METADATA STUFF -->
+        </div>
+        <!-- SECOND ROW -->
+    </div>
+</body>
+
+</html>
