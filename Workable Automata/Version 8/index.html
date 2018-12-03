@@ -36,8 +36,7 @@
                 <button onclick="swapOutTab('functionEditingPart',true,true)">Init Func</button>
                 <button onclick="swapOutTab('functionEditingPart',false,false)">Update Func</button>
                 <button onclick="swapOutTab('functionEditingPart',true,false)">Draw Func</button>
-                <button onclick="swapOutTab('presetSelection',false,false)">Presets</button>
-                <button onclick="swapOutTab('storeOrLoad',false,false)">Save/Store Code</button>
+                <button onclick="swapOutTab('storeOrLoad',false,false)">Load/Store Code</button>
                 <br>
                 <br>
 
@@ -53,10 +52,18 @@
                                 <p id="initFuncDisplay">InitBoard Function: </p>
                                 <p id="updateFuncDisplay">UpdateCell Function: </p>
                                 <p id="drawFuncDisplay">DrawBoard Function: </p>
+                                <br>
+                                <span id="stateField"><br>Set State: <input type="text" id="inputtedState" value="[0]"></span>
                             </td>
                             <td style="width: 55%;">
                                  <div id="viewControl" align="center">
                                     <!-- THERE WILL BE THE VIEWING CONTROLLER HERE -->
+                                </div>
+                                <br>
+                                <div id="zoomButtons" align="center" style="display: none">
+                                    <button onclick="zoomClick(0.25)">Zoom In</button>
+                                    <button onclick="zoomClick(-0.25)">Zoom Out</button>
+                                    <p>Zoom: <span id="zoomDisplay">1</span></p>
                                 </div>
                             </td>
                         </tr>
@@ -83,20 +90,23 @@
                     <br>
                 </div>
 
-                <div id="presetSelection" style="display: none;">
+                <div id="storeOrLoad" style="display: none; margin-left: 2%;">
+                    <p>
+                        You can search through this list to go through some available presets!
+                    </p>
                     <select id="autoList" onchange="preset_into_editor(this)">
                         <option value="nothing"></option>
                         <option value="nothing">Place Holder Option</option>
-                    </select><br><br>
-                </div>
+                    </select><br><br><br>
 
-                <div id="storeOrLoad" style="display: none;">
                     <table>
+                        <tr><td>Saving Code</td></tr>
                         <tr>
                             <td>Filename to Save As:</td>
                             <td><input id="inputFileNameToSaveAs"></td>
                             <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
                         </tr>
+                        <tr><td><br><br>Loading Code</td></tr>
                         <tr>
                             <td>Select a File to Load:</td>
                             <td><input type="file" id="fileToLoad"></td>

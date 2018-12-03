@@ -134,7 +134,7 @@ function createDrawer()
 		setDrawingEventListeners();
 		drawer.redrawAll();
 
-		document.getElementById("stateField").style.display = "";
+		document.getElementById("zoomButtons").style.display = "";
 	}
 }
 

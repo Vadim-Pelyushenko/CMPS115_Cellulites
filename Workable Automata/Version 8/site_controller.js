@@ -344,6 +344,8 @@ function loadFileAsText()
 	fileReader.readAsText(fileToLoad, "UTF-8");
 }
 
+// WEBSITE TABS
+
 function swapOutTab(tabID,showFormType,showDataWidth)
 {
 	document.getElementById(currentTabId).style.display = "none";
