@@ -23,12 +23,23 @@
     <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
     <div class="intro-body">
 
- 	<!-- Contact Form -->
- 	<div id = "contact_form"> 
- 		<p> Some contact form </p>
- 	</div>
-    </div>
-
+     <!-- Contact Form -->
+     <!-- source: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_mail -->
+    <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+      Name:<br>
+      <input type="text" name="name"><br>
+      E-mail:<br>
+      <input type="text" name="mail"><br>
+      Body:<br>
+      <!-- <input type="text" name="comment" size="50"><br><br> -->
+      <textarea name="comment" rows="23" cols="50" id="functionInputArea" 
+        placeholder="Let us know if there's bugs and errors, or just to say hi :)!"
+        style="resize: none;"></textarea> <br>
+      <button type="submit" value="Send">Send</button>
+      <button type="reset" value="Reset">Reset</button>
+    </form>
+    
+    
     </div>
     </header>
 
