@@ -8,6 +8,18 @@ function setParameters()
 	let readCols = parseInt(colsInput.value,10);
 	let readWidth = parseInt(cellWidthInput.value,10);
 
+	// Don't want them too big
+	if(readRows * readWidth > 650)
+	{
+		alert("The height of our simulator would be more than 650, which is not allowed");
+		return;
+	}
+	else if(readCols * readWidth > 650)
+	{
+		alert("The height of our simulator would be more than 650, which is not allowed");	
+		return;
+	}
+
 	if(readRows != NaN)
 	{
 		rows = readRows;
