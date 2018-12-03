@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Manual - Cellular Automata Simulator</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css"> 
+</head>
+
+
+ <body>
+ 	<nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Manual</a>
+
+    <!-- part that makes it responsive  -->
+    <button class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"> <i class="fa fa-bars"> </i> </button> 
+
+    <!-- menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+
+            	<li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="cellularautomatasimulation.html">Home</a>  </li>
+
+            	<li class="nav-item nav-link js-scroll-trigger" role="presentation"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+
+            </ul>
+        </div>
+    </div>
+    </nav> 
+
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+    <div class="intro-body">
+
+ 	<!-- Manual -->
+ 	<div id = "Manual"> 
+     		<p>
+                <font size = "7" >
+                    <b>
+                     The Manual
+                    </b>
+                </font>
+            </p>
+ 	</div>
+
+    <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    What is a cellular automata?
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>A cellular Automata is one of a set of units in a mathematical model that have simple rules governing their replication and destruction. They are used to model complex systems composed of simple units such as living things or parallel processors.  
+            <br />
+            <br />
+            On our site, a cellular automaton is simulated in a grid of cells, which may have any number of rows and any number of clums. A grid may even be infinite.
+            <br />
+            <br />
+             <img src = "photos/grid.png" alt = "grid" class = "center"   style = "width:400px;height:300px; border: 5px solid black">
+            <br />
+            <br />
+              Every cell in the grid has some sort of state, which describes the cell. The state of a cell may for instance be a boolean value, or an integer. A cell’s state could be as complicated or simple as one wants, like an Object in Java, or a struct in C.
+            <br />
+            <br />
+
+            <b>
+                EXAMPLE:
+            </b>
+            <br />
+            One CA, John Conway’s “Game of Life”, has cells whose states are thought of as alive or dead, which is typically interpreted in code as 0 or 1, and visually shown as black or white
+            <br />
+            <br />
+             <img src = "photos/GameofLife.png" alt = "grid" class = "center"   style = "width:600px;height:150px; border: 5px solid black">
+            <br />
+            <br />
+            The ruleset for John Conway's Game of Life works as follows:
+            <br />
+            - A cell has 8 neighboring cells around it, left right, up, down, and 4 diagonals.
+            <br />
+            - If a cell is "dead", and has three live neighbors, it experiences "birth", and becomes alive in the next genertion. 
+            <br />
+            -If a cell is "alive", and has fewer than 2 live neighbors, it dies of isolation.
+            <br />
+            -If a cell is alive, andhas more than 4 or more live neighbors, it dies of overpopulation.
+            <br />
+            <br />
+            In general, all cells change their states simultaneously to create a new generation. The 5 "Game of Life" grids given above are actually successive generations, you may check to see that they follow the rules as stated.
+            <br />
+        </p>
+    </div>
+    <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    How to make your own Cellular Automata
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+            <p>
+            First you must consider what you want to simulate: 
+                <ul>
+                    <li>What will the state of the cells be?</li>
+                    <li>How will they change over time?</li>
+                </ul>
+                Here are some links to help you get started!
+                <ul>
+                    <li> <a href= "https://www.youtube.com/watch?v=C2vgICfQawE">Game of Life</a>
+                    <br />
+                    There can be cells that are alive or dead. Cells that are born and die. They follow the rules we made note of earlier</li>
+
+                    <li><a href= "https://www.youtube.com/watch?v=C2vgICfQawE">Diffusion Limited Aggregation</a>
+                    <br />
+                    This CA has red cells that move around randomly inside a black void. There are white cells that stay still. The red cells turn white when they touch a white cell</li>
+
+                    <li><a href= "https://www.youtube.com/watch?v=1MtEUErz7Gg">Sand Piles Explanation</a>
+                    <br />
+                    The best way to understand how this CA works is to think of it as piles of sand. When a cell has 4 or more snad, the pile topples and spreads 1 sand into the cell's neighbors. Which means there will be 1 sand in the cells on the right and left as well as above and below the cell.</li>
+
+                    <li> <a href= "https://www.youtube.com/watch?v=M4cV0nCIZoc&
+                    ">Rock Paper Scissors Cellular Automata</a>
+                    <br />
+                    This CA is a game of rock paper scissors. The red green and blue cells are all playing a game of rock paper scissors against eachother. Red beats blue, green beats red, and blue beats green.
+                    </li>
+                </ul>
+            </p>
+    </div>
+     <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    Parameters
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>
+             After coming up with what you want to simulate, you will have to provide some basic parameters. These paramters need to specify three things:
+                <ul>
+                    <li>What are the states, and their colors?</li>
+                    <li>What is the initial state of the grid?</li>
+                    <li>How does a cell change its state in one generation</li>
+                </ul>
+            A cellular automaton is contained on a grid, and the simulator on this site is not infinite, so its dimensions need to be specified.
+            <br/>
+            For instance, if you want to have a 50x50 grid of cels and have each cell span a width of 10 pixels, then you can provide these parameters on the site. 
+            <br />
+             <img src = "photos/Parameters.png" alt = "Parameters" class = "center"   style = "width:300px;height:100px; border: 3px solid black">
+             <br />
+             Once you've decided on the parameters for the simulation, you'll need to press the "Set Parameters button" to save your parameters.
+             <br />
+             <img src = "photos/ParButton.png" alt = "Parameter  Button" class = "center"   style = "width:100px;height:35px; border: 3px solid black">
+             <br />
+             You will also wnat to establish how often a generation should be calculated and draw. You can specify this in the <b>Set Delay</b> field on the site.
+             <br />
+              <img src = "photos/SetDelay.png" alt = "Parameter Set Delay" class = "center"   style = "width:250px;height:35px; border: 3px solid black">
+              <br />
+              The input is interpreted as the milisecond delay between each new generation. So 100 miliseconds is 10 generation per second. 
+              <br />
+              Be sure to press the button to apply your parameters!
+              <br />
+                <img src = "photos/DelayButton.png" alt = "Delay Button" align = "left"   style = "width:100px;height:35px; border: 3px solid black">
+            <br />
+            Make sure to set these parameters before moving on!
+        </p>
+    </div>
+    <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    Starting Your New Automaton
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>
+            There is this section on the lower part of the Parameters list.
+        <br /> 
+          <img src = "photos/Bottom.png" alt = "Bottom Section" class = "left"   style = "width:300px;height:100px; border: 3px solid black">
+          <br />
+          This section is where you can save and name your new CA. To begin making your new CA, you just need to give it a name. After doing that you can start editing the function that define it. 
+          <br />
+            <img src = "photos/NewCA.png" alt = "New CA" class = "left"   style = "width:5r00px;height:300px; border: 3px solid black">
+        <br />
+        You will ned to write out the code for 3 functions to get your CA to run. Make sure that you give them names so you can easily keep track of them as well as have them saved to our site.
+        </p>
+    </div>
+    <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    Specifying States and Colors
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>
+            For our simulator, all cell states must be expressed as a numeric value. This means that a cell's state must be stored as a number.
+            <ul>
+                <li>
+                    <font size = "1"> NOTE: In this part of the manual state and color associating is shown simplistically, and presumes that your Cellular Automaton has a relatively small amount of possible states. If you read further into the manual(advanced section) you will find more powerful options at your disposal for drawing the automaton.</li>
+                    </font>
+            </ul>
+            When a generation of a cellular automaton is being drawn, it is important to specify the colors associated with each state.
+            <br />
+            To start writing out the mapping between state and color, you will want to select the "Drawing Cells" option. Also make sure the "Form Type" field has "mapping".
+            <br />
+             <img src = "photos/FormType.png" alt = "Form Type" class = "left"   style = "width:400px;height:75px; border: 3px solid black">
+            <br />
+            In our simulator to associate a numeric state with a color, you must list the numeric state AND a hex color. 
+            <br />
+            Using the following format: V->#XXXXXX
+            <br />
+            <ul>
+                <li>Where V is some state, and #XXXXXX is some hex color.</li>
+            </ul>
+            We aren't going to bother explaining how hex colors work. The easiest way for you to choose hex colors would be to use an online color picker to pick out a color you like for any cell state.
+            <br />
+            <a href= " https://htmlcolorcodes.com/color-picker/">html color codes</a>
+            <br />
+            <br />
+            Here are some examples on how to use color mapping:
+        </p>
+    </div>
+     <div align = "left">
+       <p>
+            <font size = "4">
+                    Color mapping for Gameof Life.
+            </font>
+            <font size = "2">
+                    <br />
+                     <b>Dead Cells (0)</b>  are drawn as <b>black (#0000000)</b>, and <b>live cells (1)</b> are drawn as <b>white (#FFFFFF)</b>.
+            </font>
+                    <br />
+                    <img src = "photos/ColorExample1.png" alt = "ColorExample1" class = "left"   style = "width:400px;height:300px; border: 3px solid black">
+                    <br />
+                    <br />
+                    <font size = "4">
+                        A color mapping for Rock Paper Scissors.
+                        <br />
+                         The state 0 is associated with pure <b>red (#FF0000)</b>, 1 is associated with <b>green(#00FF00)</b>, and 2 is associated with <b>blue(#0000FF)</b>
+                    </font>
+                    <br />
+                    <img src = "photos/ColorExample2.png" alt = "ColorExample2" class = "left"   style = "width:400px;height:300px; border: 3px solid black">
+                    <br /> 
+                    <br />
+            <font size = "4">
+                Color mapping of Sandpiles
+            </font>
+            <font size = "2">
+            <br />
+               (Example taken from this video: <a href= "https://youtu.be/1MtEUErz7Gg?t=1364"> Numberphile</a>)
+            </font>
+             <img src = "photos/ColorExample3.png" alt = "ColorExample3" class = "left"   style = "width:400px;height:300px; border: 3px solid black">
+            <br />
+
+        </p>
+    </div>
+     <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    Specifying the Initial State
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <br />
+        After speciying the colors and states that your automaton can have, you can draw out the initial state
+        <br />
+        ------More will be added soon-------
+        <br />
+    </div>
+      <div align = "center">
+       <p>
+            <font size = "5">
+                <b>
+                    Specifying how cells evolve
+                </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        To Specify How cells update their state, we have to write javascript code, but to make the process easier for you we created a "syntax sugar".
+        <br />
+        <ul>
+            <font size = "2">
+                <li>NOTE: you do not need to write a function header. Your code will be wrapped into a function.</li>
+            </font>
+        </ul> 
+    </div>
+    <div align = "center">
+            <p>
+                <font size = "4">
+                    These are the variables that you are able to access within the scope of your code:
+                </font>
+            </p>
+    </div>
+    <div align = "left">
+        <p>
+            <ul>
+                <li><b>Grid</b>
+                <br />
+                A 2-dimensional array of cells. Accessed by row then column</li>
+                
+                <li><b>Rows</b>
+                <br />
+                An integer that tells you how many rows are in the grid</li>
+
+                <li><b>Cols</b>
+                <br />
+                An integer that tells you how many columns are in the grid</li>
+
+                <li><b>Cell</b>
+                <br />
+                A reference to the current cell that you are updating.</li>
+
+                <li><b>posR</b>
+                <br />
+                The row that the cell you're updating is located on</li>
+
+                <li><b>posC</b>
+                <br />
+                The column that the cell you're updating is located on</li>
+            </ul>
+        </p>
+    </div>
+    <div align = "center">
+        <p>
+            <font size = "5">
+                <b>
+                    Establishing the Neighborhood
+               </b>
+            </font>
+        </p>
+    </div>
+    <div align = "left">
+        <p>
+            A cell changes its state from generation to generation based on its own state, as well as the state of its neighbors. 
+            <br />
+            How can we access those nighbors?
+            <br />
+            You can do it with bound-checking
+        </p>
+    </div>
+    </div>
+    </header>
+
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Cellular Automata Simulator 2018</p>
+        </div>
+    </footer>
+
+</body>
+</html>
