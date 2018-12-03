@@ -26,7 +26,7 @@
     <div>
         <!-- FIRST ROW -->
         <div id="row1" class="row" style="background-color: black">
-            <div id="output" class="col">
+            <div id="output" class="col" align="center">
                 This is where the Simulator will go
             </div>
             <div class="col" id="col2">
@@ -42,18 +42,28 @@
                 <br>
 
                 <div id="automataInfo">
-                    <p id="rowsDisplay">#Rows: </p>
-                    <p id="colsDisplay">#Cols: </p>
-                    <p id="cellWidthDisplay">CellWidth: </p>
-                    <p id="delayDisplay">Delay(Milliseconds): </p>
-                    <br>
-                    <p id="initFuncDisplay">InitBoard Function: </p>
-                    <p id="updateFuncDisplay">UpdateCell Function: </p>
-                    <p id="drawFuncDisplay">DrawBoard Function: </p>
-                    <!-- THERE WILL BE THE VIEWING THING HERE -->
+                    <table>
+                        <tr>
+                            <td>
+                                <p id="rowsDisplay">#Rows: </p>
+                                <p id="colsDisplay">#Cols: </p>
+                                <p id="cellWidthDisplay">CellWidth: </p>
+                                <p id="delayDisplay">Delay(Milliseconds): </p>
+                                <br>
+                                <p id="initFuncDisplay">InitBoard Function: </p>
+                                <p id="updateFuncDisplay">UpdateCell Function: </p>
+                                <p id="drawFuncDisplay">DrawBoard Function: </p>
+                            </td>
+                            <td style="width: 55%;">
+                                 <div id="viewControl" align="center">
+                                    <!-- THERE WILL BE THE VIEWING CONTROLLER HERE -->
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div id="parameters">
+                <div id="parameters" style="display: none;">
                     <p>
                         Set #Rows: <input type="text" id="quantityRowInput" value="100">
                     </p>

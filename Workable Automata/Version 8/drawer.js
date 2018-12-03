@@ -308,8 +308,8 @@ class Zoom_Controller
 		{
 			this.targetCanvas = document.createElement("canvas");
 			this.targetCanvas.setAttribute("id", "targetCanvas");
-			let outputTag = document.getElementById("output");
-			outputTag.appendChild(this.targetCanvas);
+			let viewControl = document.getElementById("viewControl");
+			viewControl.appendChild(this.targetCanvas);
 		}
 
 		this.targetCTX = this.targetCanvas.getContext("2d");
