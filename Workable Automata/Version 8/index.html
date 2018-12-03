@@ -20,167 +20,171 @@
     <script type="text/javascript" src="Compilation/update_cell_compiler.js"></script>
     <script type="text/javascript" src="Compilation/draw_board_compiler.js"></script>
     <script type="text/javascript" src="site_controller.js" defer></script>
+
+    <style>
+        .nav-item{
+            float: left;
+        }
+
+        .nav-item2{
+            float: right;
+        }
+    </style>
+
 </head>
 
 <body>
-    <div id="navbar1">
-       <ul id=nav>
-           <li id="nav-item-current">Cellular Automata Simulator</a> </li>
-           <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
-           <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
-           <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
-       </ul>
-   </div>
-    
-    <div>
-        <!-- FIRST ROW -->
-        <div id="row1" class="row">
-            <div id="output" class="col" align="center">
-                <br>
-                This is where the Simulator will go
+<div id="navbar1">
+    <ul id=nav>
+        <!--<li id="nav-item-current">Cellular Automata Simulator</a> </li>-->
+        <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="manual.html">Manual</a> </li>
+        <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="about.html">About</a>  </li>
+        <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="contact.html">Contact</a></li>
+
+        <li class="nav-item2"> <a onclick="swapOutTab('automataInfo',false,false,-1)">Info</a> </li>
+        <li class="nav-item2"> <a onclick="swapOutTab('parameters',false,false,-1)">Parameters</a> </li>
+        <li class="nav-item2"> <a onclick="swapOutTab('functionEditingPart',true,true,0)">Init Func</a> </li>
+        <li class="nav-item2"> <a onclick="swapOutTab('functionEditingPart',false,false,1)">Update Func</a> </li>
+        <li class="nav-item2"> <a onclick="swapOutTab('functionEditingPart',true,false,2)">Draw Func</a> </li>
+        <li class="nav-item2"> <a onclick="swapOutTab('storeOrLoad',false,false,-1)">Save/Store Code</a> </li>
+    </ul>
+</div>
+
+<div>
+    <!-- FIRST ROW -->
+    <div id="row1" class="row">
+        <div id="output" class="col" align="center">
+            <br>
+            This is where the Simulator will go
+        </div>
+        <div class="col" id="col2">
+
+            <br>
+            <br>
+
+            <div id="automataInfo">
+                <table>
+                    <tr>
+                        <td>
+                            <p>Automaton Name: <span id="automatonDisplay"></span></p>
+                            <p id="rowsDisplay">#Rows: </p>
+                            <p id="colsDisplay">#Cols: </p>
+                            <p id="cellWidthDisplay">CellWidth: </p>
+                            <p id="delayDisplay">Delay(Milliseconds): </p>
+                            <br>
+                            <p id="initFuncDisplay">InitBoard Function: </p>
+                            <p id="updateFuncDisplay">UpdateCell Function: </p>
+                            <p id="drawFuncDisplay">DrawBoard Function: </p>
+                            <br>
+                            <span id="stateField"><br>Set State: <input type="text" id="inputtedState" value="[0]"></span>
+                        </td>
+                        <td style="width: 55%;">
+                            <div id="viewControl" align="center">
+                                <!-- THERE WILL BE THE VIEWING CONTROLLER HERE -->
+                            </div>
+                            <br>
+                            <div id="zoomButtons" align="center" style="display: none">
+                                <button onclick="zoomClick(0.25)">Zoom In</button>
+                                <button onclick="zoomClick(-0.25)">Zoom Out</button>
+                                <p>Zoom: <span id="zoomDisplay">1</span></p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="col" id="col2">
-                <!--<button onclick="swapOutTab('automataInfo',false,false)">Info</button>-->
-                <!--<button onclick="swapOutTab('parameters',false,false)">Parameters</button>-->
-                <!--<button onclick="swapOutTab('functionEditingPart',true,true)">Init Func</button>-->
-                <!--<button onclick="swapOutTab('functionEditingPart',false,false)">Update Func</button>-->
-                <!--<button onclick="swapOutTab('functionEditingPart',true,false)">Draw Func</button>-->
-                <!--<button onclick="swapOutTab('presetSelection',false,false)">Presets</button>-->
-                <!--<button onclick="swapOutTab('storeOrLoad',false,false)">Save/Store Code</button>-->
-                 <ul>
-                    <li> <a onclick="swapOutTab('automataInfo',false,false,-1)">Info</a> </li>
-                    <li> <a onclick="swapOutTab('parameters',false,false,-1)">Parameters</a> </li>
-                    <li> <a onclick="swapOutTab('functionEditingPart',true,true,0)">Init Func</a> </li>
-                    <li> <a onclick="swapOutTab('functionEditingPart',false,false,1)">Update Func</a> </li>
-                    <li> <a onclick="swapOutTab('functionEditingPart',true,false,2)">Draw Func</a> </li>
-                    <li> <a onclick="swapOutTab('storeOrLoad',false,false,-1)">Save/Store Code</a> </li>
-                </ul>
+
+            <div id="parameters" style="display: none;">
+                <p>
+                    Set #Rows: <input type="text" id="quantityRowInput" value="100">
+                </p>
+                <p>
+                    Set #Cols: <input type="text" id="quantityColInput" value="100">
+                </p>
+                <p>
+                    Set CellWidth: <input type="text" id="cellWidthInput" value="5">
+                </p>
+                <button type="button" onclick="setParameters()">Set Parameters</button>
                 <br>
                 <br>
+                <p>
+                    Set Delay: <input type="text" id="delayInput" value="100">
+                </p>
+                <button id="setDelay" onclick="setDelay()">Set Delay</button>
+            </div>
 
-                <div id="automataInfo">
-                    <table>
-                        <tr>
-                            <td>
-                                <p>Automaton Name: <span id="automatonDisplay"></span></p>
-                                <p id="rowsDisplay">#Rows: </p>
-                                <p id="colsDisplay">#Cols: </p>
-                                <p id="cellWidthDisplay">CellWidth: </p>
-                                <p id="delayDisplay">Delay(Milliseconds): </p>
-                                <br>
-                                <p id="initFuncDisplay">InitBoard Function: </p>
-                                <p id="updateFuncDisplay">UpdateCell Function: </p>
-                                <p id="drawFuncDisplay">DrawBoard Function: </p>
-                                <br>
-                                <span id="stateField"><br>Set State: <input type="text" id="inputtedState" value="[0]"></span>
-                            </td>
-                            <td style="width: 55%;">
-                                 <div id="viewControl" align="center">
-                                    <!-- THERE WILL BE THE VIEWING CONTROLLER HERE -->
-                                </div>
-                                <br>
-                                <div id="zoomButtons" align="center" style="display: none">
-                                    <button onclick="zoomClick(0.25)">Zoom In</button>
-                                    <button onclick="zoomClick(-0.25)">Zoom Out</button>
-                                    <p>Zoom: <span id="zoomDisplay">1</span></p>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+            <div id="functionEditingPart" style="display: none;" align="center">
+                <p>
+                    Name your function:
+                    <input id="functionNameInput" type="text" cols="25"></input>
+                </p>
+                <textarea rows="23" cols="80" id="functionInputArea"
+                          placeholder="Write your function code here, just code, no header needed"
+                          style="resize: none;"></textarea>
+                <br>
+            </div>
 
-                <div id="parameters" style="display: none;">
-                    <p>
-                        Set #Rows: <input type="text" id="quantityRowInput" value="100">
-                    </p>
-                    <p>
-                        Set #Cols: <input type="text" id="quantityColInput" value="100">
-                    </p>
-                    <p>
-                        Set CellWidth: <input type="text" id="cellWidthInput" value="5">
-                    </p>
-                    <button type="button" onclick="setParameters()">Set Parameters</button>
-                    <br>
-                    <br>
-                    <p>
-                        Set Delay: <input type="text" id="delayInput" value="100">
-                    </p>
-                    <button id="setDelay" onclick="setDelay()">Set Delay</button>
-                </div>
+            <div id="storeOrLoad" style="display: none; margin-left: 2%;">
+                <p>
+                    You can search through this list to go through some available presets!
+                </p>
+                <select id="autoList" onchange="preset_into_editor(this)">
+                    <option value="nothing"></option>
+                </select><br><br><br>
 
-                <div id="functionEditingPart" style="display: none;" align="center">
-                    <p>
-                        Name your function:
-                        <input id="functionNameInput" type="text" cols="25"></input>
-                    </p>
-                    <textarea rows="23" cols="80" id="functionInputArea" 
-                        placeholder="Write your function code here, just code, no header needed"
-                        style="resize: none;"></textarea>
-                    <br>
-                </div>
-
-                <div id="storeOrLoad" style="display: none; margin-left: 2%;">
-                    <p>
-                        You can search through this list to go through some available presets!
-                    </p>
-                    <select id="autoList" onchange="preset_into_editor(this)">
-                        <option value="nothing"></option>
-                    </select><br><br><br>
-
-                    <table>
-                        <tr><td>Saving Code</td></tr>
-                        <tr>
-                            <td>Filename to Save As:</td>
-                            <td><input id="inputFileNameToSaveAs"></td>
-                            <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
-                        </tr>
-                        <tr><td><br><br>Loading Code</td></tr>
-                        <tr>
-                            <td>Select a File to Load:</td>
-                            <td><input type="file" id="fileToLoad"></td>
-                            <td><button onclick="loadFileAsText()">Load Selected File</button></td>
-                        </tr>
-                    </table>
-                </div>
+                <table>
+                    <tr><td>Saving Code</td></tr>
+                    <tr>
+                        <td>Filename to Save As:</td>
+                        <td><input id="inputFileNameToSaveAs"></td>
+                        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+                    </tr>
+                    <tr><td><br><br>Loading Code</td></tr>
+                    <tr>
+                        <td>Select a File to Load:</td>
+                        <td><input type="file" id="fileToLoad"></td>
+                        <td><button onclick="loadFileAsText()">Load Selected File</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <!-- FIRST ROW -->
+    </div>
+    <!-- FIRST ROW -->
 
-        <!-- SECOND ROW -->
-        <div id="row2" class="row">
-            <div id="col3" class="col" align="center">
-                <button id="run" onclick="runSimulation()">Start/Reset</button>
-                <button id="stop" onclick="stopSimulation()">Stop</button>
-                <button id="resume" onclick="resumeSimulation()">Resume</button>
-            </div>
+    <!-- SECOND ROW -->
+    <div id="row2" class="row">
+        <div id="col3" class="col" align="center">
+            <button id="run" onclick="runSimulation()">Start/Reset</button>
+            <button id="stop" onclick="stopSimulation()">Stop</button>
+            <button id="resume" onclick="resumeSimulation()">Resume</button>
+        </div>
 
-            <!-- METADATA STUFF -->
-            <div id="col4" class="col">
+        <!-- METADATA STUFF -->
+        <div id="col4" class="col">
 
-                <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
-                <span id="formTypeField" style="display: none;">
+            <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
+            <span id="formTypeField" style="display: none;">
                     Form Type: <input type="text" id="formTypeInput" size="10" style="margin-bottom: 6px; margin-top: 2px"><br>
                 </span>
-                <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
+            <!-- THE FORMTYPE FOR DRAWING AND INITIALIZATION -->
 
 
 
-                <!-- THE DATAWIDTH FOR INITIALIZATION -->
-                <span id="dataWidthField" style="display: none;">
+            <!-- THE DATAWIDTH FOR INITIALIZATION -->
+            <span id="dataWidthField" style="display: none;">
                     Data Width: <input type="text" id="dataWidthInput" value="1" size="1">
                     <br>
                 </span>
-                <!-- THE DATAWIDTH FOR INITIALIZATION -->
+            <!-- THE DATAWIDTH FOR INITIALIZATION -->
 
-                <div align="center">
-                    <button id="compileEverything" onclick="compile_all()">Compile All</button>
-                    <button id="newAuto" onclick="new_automaton()">New Automaton</button>
-                </div> 
+            <div align="center">
+                <button id="compileEverything" onclick="compile_all()">Compile All</button>
+                <button id="newAuto" onclick="new_automaton()">New Automaton</button>
             </div>
-            <!-- METADATA STUFF -->
         </div>
-        <!-- SECOND ROW -->
+        <!-- METADATA STUFF -->
     </div>
+    <!-- SECOND ROW -->
+</div>
 </body>
 
 </html>
