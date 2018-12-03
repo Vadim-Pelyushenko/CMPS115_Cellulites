@@ -7,8 +7,9 @@ var delay = null;
 var drawer = null;
 
 var currentTabId = "automataInfo";
-
 var ide_controller = new IDE_Controller();
+
+var funcLoaded = null;
 
 // Put in the initial CA's to have in the preset list
 createPresets();
@@ -331,6 +332,16 @@ function loadFileAsText()
 	fileReader.onload = function(fileLoadedEvent)
 	{
 		let textFromFileLoaded = fileLoadedEvent.target.result;
+
+		ide_controller.change_function_editing(funcLoaded);
+
+		if(funcLoaded === "initBoard")
+			swapOutTab('functionEditingPart',true,true,0);
+		else if(funcLoaded === "updateCell")
+			swapOutTab('functionEditingPart',false,false,1);
+		else if(funcLoaded === "drawBoard")
+			swapOutTab('functionEditingPart',true,false,2);
+
 		document.getElementById("functionInputArea").value = textFromFileLoaded;
 	};
 	fileReader.readAsText(fileToLoad, "UTF-8");
@@ -367,4 +378,12 @@ function swapOutTab(tabID,showFormType,showDataWidth,funcType)
 		ide_controller.change_function_editing("updateCell");
 	else if(funcType === 2)
 		ide_controller.change_function_editing("drawBoard");
+}
+
+function loadSelected(func)
+{
+	if(ide_controller.simulating_group === null)
+		ide_controller.name_change("Loaded");
+
+	funcLoaded = func;
 }

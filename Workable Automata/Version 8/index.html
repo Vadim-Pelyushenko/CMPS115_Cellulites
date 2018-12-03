@@ -150,6 +150,16 @@
                             <td><input type="file" id="fileToLoad"></td>
                             <td><button onclick="loadFileAsText()">Load Selected File</button></td>
                         </tr>
+                        <tr>
+                            <td><span>Select load function</span></td>
+                            <td>
+                                <select onchange="loadSelected(this.value)" style="font-size: 18px;">
+                                    <option value="initBoard">Init</option>
+                                    <option value="updateCell">Update</option>
+                                    <option value="drawBoard">Draw</option>
+                                </select>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
