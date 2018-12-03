@@ -34,8 +34,9 @@
     
     <div>
         <!-- FIRST ROW -->
-        <div id="row1" class="row" style="background-color: black">
+        <div id="row1" class="row">
             <div id="output" class="col" align="center">
+                <br>
                 This is where the Simulator will go
             </div>
             <div class="col" id="col2">
@@ -169,11 +170,12 @@
                     Data Width: <input type="text" id="dataWidthInput" value="1" size="1">
                     <br>
                 </span>
-                <br>
                 <!-- THE DATAWIDTH FOR INITIALIZATION -->
 
-                <button id="compileEverything" onclick="compile_all()">Compile All</button>
-                <button id="newAuto" onclick="new_automaton()">New Automaton</button>
+                <div align="center">
+                    <button id="compileEverything" onclick="compile_all()">Compile All</button>
+                    <button id="newAuto" onclick="new_automaton()">New Automaton</button>
+                </div> 
             </div>
             <!-- METADATA STUFF -->
         </div>
