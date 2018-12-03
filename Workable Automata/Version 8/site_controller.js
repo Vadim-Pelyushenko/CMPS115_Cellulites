@@ -8,19 +8,10 @@ var drawer = null;
 
 var currentTabId = "automataInfo";
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var ide_controller = new IDE_Controller();
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 
 // Put in the initial CA's to have in the preset list
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// THIS LINE IS EXTREMELY CRITICAL, BUT IT IS BEING COMMENTED OUT FOR NOW
 createPresets();
-// THIS LINE IS EXTREMELY CRITICAL, BUT IT IS BEING COMMENTED OUT FOR NOW
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 var initForm = null;
 var initBoardFunc = null;
@@ -133,8 +124,8 @@ function preset_into_editor(e)
 
 	if(worked)
 	{
-		document.getElementById("automatonName").value = e.value;
-		document.getElementById("autoNamePrompt").innerHTML = "Cellular Automata Name: ";
+		document.getElementById("automatonDisplay").innerHTML = e.value;
+		// document.getElementById("autoNamePrompt").innerHTML = "Cellular Automata Name: ";
 	}
 
 	document.getElementById("autoList").value = "";
@@ -355,7 +346,7 @@ function swapOutTab(tabID,showFormType,showDataWidth)
 	let formTypeField = document.getElementById("formTypeField");
 	let dataWidthField = document.getElementById("dataWidthField");
 
-	console.log(showFormType + " " + showDataWidth);
+	// console.log(showFormType + " " + showDataWidth);
 
 	if(showFormType === true)
 		formTypeField.style.display = "";

@@ -44,8 +44,8 @@ class IDE_Controller
 			console.log("Clearing room for a new automaton");
 		this.simulating_group = group;
 
-		let menu = document.getElementById("functionSelection");
-		menu.getElementsByTagName('option')[2].selected = "selected";
+		// let menu = document.getElementById("functionSelection");
+		// menu.getElementsByTagName('option')[2].selected = "selected";
 		this.change_function_editing("updateCell");
 	}
 
@@ -121,7 +121,7 @@ class IDE_Controller
 		let functionEditing = document.getElementById("functionEditingPart");
 		let functionArea = document.getElementById("functionInputArea");
 		let functionNameInput = document.getElementById("functionNameInput");
-		let formField = document.getElementById("formPromptAndInput");
+		let formField = document.getElementById("formTypeField");
 		let formInput = document.getElementById("formTypeInput");
 
 		if(func === "nothing")
@@ -143,12 +143,14 @@ class IDE_Controller
 			formInput.value = this.simulating_group.initBoardForm;
 
 			dataWidthField.style.display = "";
+			swapOutTab('functionEditingPart',true,true);
 		}
 		else if(func === "updateCell")
 		{
 			this.loadUpdateCellFromSelected();
 			formField.style.display = "none";
 			dataWidthField.style.display = "none";
+			swapOutTab('functionEditingPart',false,false);
 		}
 		else if(func === "drawBoard")
 		{
@@ -156,7 +158,10 @@ class IDE_Controller
 			formField.style.display = "";
 			formInput.value = this.simulating_group.drawBoardForm;
 			dataWidthField.style.display = "none";
+			swapOutTab('functionEditingPart',true,false);
 		}
+
+
 	}
 
 	saveCurrentProgress()
