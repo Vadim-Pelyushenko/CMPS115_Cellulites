@@ -6,18 +6,17 @@ import {
     // Form, FormGroup, ControlLabel, FormControl
 } from "react-bootstrap";
 
+// For text box save and load functions 
 import * as box from './CodeBox.js';
-import * as input from './input_controller.js'
 
-
-
-// <script type="text/javascript" src="src/board.js"></script>
-//     <script type="text/javascript" src="src/drawer.js"></script>
-//     <script type="text/javascript" src="src/cell.js"></script>
-//     <script type="text/javascript" src="src/input_controller.js"></script>
-//     <script type="text/javascript" src="src/site_controller.js"></script>
-//     <script type="text/javascript" src="src/game_of_life.js"></script>
-//     <script type="text/javascript" src="src/rule30.js"></script>
+// For implementing the original website cellular automata materials
+import * as board from './board.js';
+import * as drawer from './drawer.js';
+import * as cell from './cell.js';
+// import * as input from './input_controller.js';
+import * as site from './site_controller.js';
+// import * as gol from './gol.js';
+// import * as rule30 from './rule30.js';
 
 
 class Home extends Component {
@@ -29,41 +28,47 @@ class Home extends Component {
           <Row className="show-grid">
             {/*************** The LIFT half ***************/}
             <Col xs={12} md={8}>
+              
+              
               <p>
                 The display should be placed here.
               </p>
               <div id = "output"></div>
               <Row><center>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='success' onClick={input.runSimulation}> Start/Reset </Button>
+                  <Button bsStyle='success' onClick={site.runSimulation}> Start/Reset </Button>
                 </Col>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='danger' onClick={input.stopSimulation}> Stop </Button>
+                  <Button bsStyle='danger' onClick={site.stopSimulation}> Stop </Button>
                 </Col>
                 <Col xs="6" sm="4">
-                  <Button bsStyle='warning' onClick={input.resumeSimulation}> Resume </Button>
+                  <Button bsStyle='warning' onClick={site.resumeSimulation}> Resume </Button>
                 </Col>
               </center></Row>
+
+              {/* Store the presets here */}
+
             </Col>
 
             {/*************** The RIGHT half ***************/}
             <Col xs={6} md={4}>
+            <div className="left_scroll">
             <div className="tabs">
             <Tabs defaultActiveKey={3} id="uncontrolled-tab-example">
-              <Tab eventKey={1} title="Environment">
+              <Tab eventKey={1} title="Cell Init">
                 { codebox() }
               </Tab>
               
-              <Tab eventKey={2} title="Cell">
+              <Tab eventKey={2} title="Cell Update">
                 { codebox() }
               </Tab>
 
-              <Tab eventKey={3} title="Something">
+              <Tab eventKey={3} title="Drawing Cells">
                 { codebox() }
               </Tab>
             </Tabs>
             </div>
-            
+            </div>
             </Col> {/* End of RIGHT side */}
           </Row>
         </Grid>

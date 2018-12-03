@@ -1,3 +1,5 @@
+import {copyCell} from './cell.js'
+
 class Board
 {
 	// Data:
@@ -173,7 +175,7 @@ class Board
 //---------------------------------------------------------------
 // Utility functions
 
-function create2DArray(rows, cols)
+export function create2DArray(rows, cols)
 {
 	let result = new Array(rows);
 
@@ -185,7 +187,7 @@ function create2DArray(rows, cols)
 	return result;
 }
 
-function randomizeOrder(numValues,rows,cols,posR,posC,)
+export function randomizeOrder(numValues,rows,cols,posR,posC,)
 {
 	let currRow = 0;
 	let count = 0;
@@ -218,7 +220,7 @@ function randomizeOrder(numValues,rows,cols,posR,posC,)
 }
 
 // For Debugging
-function printGameOfLifeBoard(grid)
+export function printGameOfLifeBoard(grid)
 {
 	let rows = grid.length;
 	let cols = grid[0].length;
@@ -242,7 +244,7 @@ function printGameOfLifeBoard(grid)
 	}
 }
 
-function printGameOfLifeTempBoard(grid)
+export function printGameOfLifeTempBoard(grid)
 {
 	console.log("The futureState of the board");
 	let rows = grid.length;
@@ -267,7 +269,7 @@ function printGameOfLifeTempBoard(grid)
 	}
 }
 
-function copyGrid(grid)
+export function copyGrid(grid)
 {
 	let result = new Array(grid.length);
 

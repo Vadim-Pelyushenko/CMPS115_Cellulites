@@ -1,7 +1,9 @@
+// import * as board from './board.js'
+
 // Global Variables
-var rows = null;
-var cols = null;
-var cellWidth = null;
+// var rows = null;
+// var cols = null;
+// var cellWidth = null;
 var delay = null;
 
 var board = null;
@@ -11,7 +13,7 @@ var initBoardFunc = null;
 var updateCellFunc = null;
 var drawBoardFunc = null;
 
-function runSimulation()
+export function runSimulation()
 {
 	board.setInitBoard(initBoardFunc);
 	board.initializeBoard();
@@ -26,12 +28,12 @@ function runSimulation()
 	drawer.frame = 0;
 }
 
-function stopSimulation()
+export function stopSimulation()
 {
 	drawer.stopDrawing();
 }
 
-function resumeSimulation()
+export function resumeSimulation()
 {
 	drawer.resumeDrawing(delay);
 }

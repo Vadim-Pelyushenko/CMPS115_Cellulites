@@ -62,3 +62,10 @@ ul.header li a {
 .main_page {
     background: white;
 }
+
+.left_scroll {
+    max-height: 800px;
+    /* overflow: scroll; */
+    overflow-y: scroll;
+    /* -webkit-overflow-scrolling: touch; */
+}

@@ -53,11 +53,11 @@ class Cell
 			this.futureState[ind] = value;
 	}
 
-	changeWidth(dataWidth)
-	{
-		this.data = new Array(width);
-		this.futureState = new Array(width);
-	}
+	// changeWidth(dataWidth)
+	// {
+	// 	this.data = new Array(width);
+	// 	this.futureState = new Array(width);
+	// }
 
 	nextGeneration()
 	{
@@ -77,7 +77,7 @@ class Cell
 	}
 }
 
-function copyCell(cell)
+export function copyCell(cell)
 {
 	let cState = new Array(cell.state.length);
 	let cFState = new Array(cell.state.length);

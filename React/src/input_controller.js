@@ -1,4 +1,4 @@
-function setParameters()
+export function setParameters()
 {
 	let rowsInput = document.getElementById("quantityRowInput");
 	let colsInput = document.getElementById("quantityColInput");
@@ -38,7 +38,7 @@ function setParameters()
 	}
 }
 
-function setDelay()
+export function setDelay()
 {
 	let delayInput = document.getElementById("delayInput");
 	let readDelay = parseInt(delayInput.value,10);
@@ -51,7 +51,7 @@ function setDelay()
 	}
 }
 
-function createBoard()
+export function createBoard()
 {
 	if(rows == null || cols == null)
 	{
@@ -66,7 +66,7 @@ function createBoard()
 	}
 }
 
-function setBoardInitFunction(initFunc)
+export function setBoardInitFunction(initFunc)
 {
 	if(board == null)
 	{
@@ -84,7 +84,7 @@ function setBoardInitFunction(initFunc)
 	}
 }
 
-function setCellUpdateFunction(updateFunc)
+export function setCellUpdateFunction(updateFunc)
 {
 	if(board == null)
 	{
@@ -108,7 +108,7 @@ function setCellUpdateFunction(updateFunc)
 	}
 }
 
-function createDrawer()
+export function createDrawer()
 {
 	if(board == null)
 	{
@@ -126,7 +126,7 @@ function createDrawer()
 		drawer = new Drawer(board,cellWidth);
 }
 
-function setDrawBoardFunction(drawFunc)
+export function setDrawBoardFunction(drawFunc)
 {
 	if(drawer == null)
 	{
@@ -149,29 +149,3 @@ function setDrawBoardFunction(drawFunc)
 		drawFuncDisplay.innerHTML = "DrawBoard Function: SET";
 	}
 }
-
-// function startSite()
-// {
-// 	console.log("The script has begun");
-
-// 	// Settings for the CA
-// 	let rows = 300;
-// 	let cols = 300;
-// 	let cellWidth = 2;
-// 	let delay = 1;
-
-// 	// Create the board, set the initialization and update function of the CA
-// 	let board = new Board(rows,cols);
-// 	board.setInitBoard(gameOfLifeInitBoard);
-// 	board.initializeBoard();
-// 	board.setCellUpdate(gameOfLifeUpdateCell);
-
-// 	board.setRandomized(false); // is false by default, but still an option anyways
-
-// 	// Create the drawer, set the drawing function of the CA
-// 	let drawer = new Drawer(board,cellWidth);
-// 	drawer.setDrawBoard(gameOfLifeDrawBoard);
-
-// 	drawer.startDrawing(delay);
-// 	// drawer.drawFrame();
-// }

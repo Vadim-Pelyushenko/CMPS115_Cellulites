@@ -87,11 +87,11 @@ class Drawer
 
 	stopDrawing()
 	{
-		if(this.drawLoop == null)
+		if(this.drawLoop === null)
 		{
 			console.log("There is nothing being drawn right now");
 		}
-		else if(this.isRunning == false)
+		else if(this.isRunning === false)
 		{
 			console.log("The Simulation is paused already");
 		}
