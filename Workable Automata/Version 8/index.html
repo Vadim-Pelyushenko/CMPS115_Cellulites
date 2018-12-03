@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Cellular Automata Simulator</title>
 
+
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="game_of_life.js"></script>
     <script type="text/javascript" src="automatas.js"></script>
@@ -31,6 +32,7 @@
             <div class="col" id="col2">
 
                 <button onclick="swapOutTab('automataInfo',false,false)">Info</button>
+                <button onclick="swapOutTab('parameters',false,false)">Parameters</button>
                 <button onclick="swapOutTab('functionEditingPart',true,true)">Init Func</button>
                 <button onclick="swapOutTab('functionEditingPart',false,false)">Update Func</button>
                 <button onclick="swapOutTab('functionEditingPart',true,false)">Draw Func</button>
@@ -49,6 +51,19 @@
                     <p id="updateFuncDisplay">UpdateCell Function: </p>
                     <p id="drawFuncDisplay">DrawBoard Function: </p>
                     <!-- THERE WILL BE THE VIEWING THING HERE -->
+                </div>
+
+                <div id="parameters">
+                    <p>
+                        Set #Rows: <input type="text" id="quantityRowInput" value="100">
+                    </p>
+                    <p>
+                        Set #Cols: <input type="text" id="quantityColInput" value="100">
+                    </p>
+                    <p>
+                        Set CellWidth: <input type="text" id="cellWidthInput" value="5">
+                    </p>
+                    <button type="button" onclick="setParameters()">Set Parameters</button>
                 </div>
 
                 <div id="functionEditingPart" style="display: none;">

@@ -9,7 +9,7 @@ var drawer = null;
 var currentTabId = "automataInfo";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// var ide_controller = new IDE_Controller();
+var ide_controller = new IDE_Controller();
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -18,7 +18,7 @@ var currentTabId = "automataInfo";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // THIS LINE IS EXTREMELY CRITICAL, BUT IT IS BEING COMMENTED OUT FOR NOW
-// createPresets();
+createPresets();
 // THIS LINE IS EXTREMELY CRITICAL, BUT IT IS BEING COMMENTED OUT FOR NOW
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
