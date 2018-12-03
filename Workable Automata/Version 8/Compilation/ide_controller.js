@@ -135,7 +135,7 @@ class IDE_Controller
 		}
 		
 		this.selected_function = func;
-		functionEditing.style.display = ""; // unhide the function editing part
+		// functionEditing.style.display = ""; // unhide the function editing part
 
 		let dataWidthField = document.getElementById("dataWidthField");
 		if(func === "initBoard")
@@ -158,7 +158,7 @@ class IDE_Controller
 		{
 			this.loadDrawBoardFromSelected();
 			formField.style.display = "";
-			console.log(this.simulating_group.drawBoardForm);
+			// console.log(this.simulating_group.drawBoardForm);
 			formInput.value = this.simulating_group.drawBoardForm;
 			dataWidthField.style.display = "none";
 			// swapOutTab('functionEditingPart',true,false);
