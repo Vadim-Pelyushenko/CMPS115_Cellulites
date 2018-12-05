@@ -126,7 +126,7 @@ function preset_into_editor(e)
 	if(worked)
 	{
 		document.getElementById("automatonDisplay").innerHTML = e.value;
-		// document.getElementById("autoNamePrompt").innerHTML = "Cellular Automata Name: ";
+		document.getElementById("automatonName").value = e.value;
 	}
 
 	document.getElementById("autoList").value = "";
