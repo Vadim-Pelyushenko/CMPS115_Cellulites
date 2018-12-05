@@ -245,7 +245,10 @@ class Drawer
 
 		let len = Math.min(cell.state.length,this.targetState.length);
 		for(let k = 0; k < len; k++)
+		{
 			cell.state[k] = this.targetState[k];
+			cell.futureState[k] = this.targetState[k];
+		}
 
 		this.drawBoard();
 		this.drawGridLines();
