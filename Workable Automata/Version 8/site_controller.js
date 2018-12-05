@@ -127,6 +127,10 @@ function preset_into_editor(e)
 	{
 		document.getElementById("automatonDisplay").innerHTML = e.value;
 		document.getElementById("automatonName").value = e.value;
+
+		document.getElementById("initFuncDisplay").innerHTML = "InitBoard Function: " + ide_controller.simulating_group.initBoardName;
+		document.getElementById("updateFuncDisplay").innerHTML = "UpdateCell Function: " + ide_controller.simulating_group.updateCellName;
+		document.getElementById("drawFuncDisplay").innerHTML = "DrawBoard Function: " + ide_controller.simulating_group.drawBoardName;
 	}
 
 	document.getElementById("autoList").value = "";
