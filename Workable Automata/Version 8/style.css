@@ -5,7 +5,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow: auto;
     padding: 26px;
     margin: 0;
 }
@@ -152,7 +152,6 @@ li a:hover
 }
 
 /*NAVBAR*/
-
 nav
 {
   font-family:Cabin,Helvetica Neue,Helvetica,Arial,sans-serif;
