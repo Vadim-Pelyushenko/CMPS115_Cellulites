@@ -1,3 +1,15 @@
+body {
+    /* font-family: Sans-serif; */
+    background-image: url(background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    padding: 26px;
+    margin: 0;
+}
+
 html *
 {
   font-size: 1em !important;
@@ -75,7 +87,7 @@ li a
 {
 	background-color: #FFCC99;
   border-radius: 0px 0px 25px 25px;
-	height: 550px; 
+	height: 550px;
 	margin-left: 3%;
 }
 
@@ -83,7 +95,7 @@ li a
 {
 	background-color: #CCFFCC;
   border-radius: 25px;
-	margin-left: 3%; 
+	margin-left: 3%;
 	/*margin-right: 1%;*/
 }
 
@@ -134,7 +146,7 @@ li a
   text-decoration: none;
 }
 
-li a:hover 
+li a:hover
 {
   background-color: #111;
 }
