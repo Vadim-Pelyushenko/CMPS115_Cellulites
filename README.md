@@ -1,6 +1,6 @@
 # UC Santa Cruz CMPS115 the Cellular Automata Simulator
 
-This is the final product of our project: [Website](https://cellularautomatasimulation.com)
+This is the final product of our project: [Website](http://cellularautomatasimulation.com)
 
 **Course Name:** CMPS 115 - 01 Software Development
 
